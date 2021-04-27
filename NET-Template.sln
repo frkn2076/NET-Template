@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggerQueue", "LoggerQueue", "{8E55C619-D3B1-48EB-A9C2-F8C8C0F13DEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger", "Logger\Logger.csproj", "{2BF975FC-7D05-49F0-81E4-08C06D36F38E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,10 @@ Global
 		{63864FF3-C959-4307-BCF6-8BB3B5D19F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63864FF3-C959-4307-BCF6-8BB3B5D19F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63864FF3-C959-4307-BCF6-8BB3B5D19F12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BF975FC-7D05-49F0-81E4-08C06D36F38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BF975FC-7D05-49F0-81E4-08C06D36F38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BF975FC-7D05-49F0-81E4-08C06D36F38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BF975FC-7D05-49F0-81E4-08C06D36F38E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +54,7 @@ Global
 		{E50113A4-376F-463D-9732-9043103AF789} = {E9FFE9C0-32DA-400A-82F0-186EA6E701EF}
 		{ABD270F5-3EAF-478A-9B48-F95296A49F0B} = {FF5BC95D-BAE8-44B0-AC13-599133E2EA0C}
 		{63864FF3-C959-4307-BCF6-8BB3B5D19F12} = {BC601146-F87B-438A-BC91-AAC3452B495F}
+		{2BF975FC-7D05-49F0-81E4-08C06D36F38E} = {8E55C619-D3B1-48EB-A9C2-F8C8C0F13DEB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B385B849-7D85-4824-9205-8B10B5F68129}
