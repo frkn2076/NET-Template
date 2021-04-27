@@ -10,7 +10,14 @@
         }
       ],
       "UpstreamPathTemplate": "/api/Auth/{url}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "PeriodTimespan": 600,
+        "Limit": 30
+      }
     },
     {
       "DownstreamPathTemplate": "/api/product",
@@ -26,6 +33,10 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000"
+    "BaseUrl": "https://localhost:5000",
+    "RateLimitOptions": {
+      "DisableRateLimitHeaders": false,
+      "QuotaExceededMessage": "Too many requests!!!"
+    }
   }
 }
