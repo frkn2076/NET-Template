@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace RegisterService.Controllers
 {
@@ -8,16 +10,19 @@ namespace RegisterService.Controllers
     public class RegisterController : ControllerBase
     {
         private readonly ILogger<RegisterController> _logger;
+        private readonly IDistributedCache _redisCache;
 
-        public RegisterController(ILogger<RegisterController> logger)
+        public RegisterController(ILogger<RegisterController> logger, IDistributedCache cache)
         {
             _logger = logger;
+            _redisCache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
-        [HttpGet]
+        [HttpGet("1")]
         public string Get()
         {
-            return "HEY";
+            var res = _redisCache.GetString("name");
+            return res;
         }
     }
 }

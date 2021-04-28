@@ -48,6 +48,12 @@ namespace IdentityService
                     ValidateAudience = false
                 };
             });
+
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetValue<string>("acheSettings: ConnectionString");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

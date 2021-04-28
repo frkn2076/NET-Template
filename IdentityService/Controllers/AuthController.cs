@@ -1,7 +1,9 @@
 ﻿using IdentityService.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Security.Claims;
 
@@ -13,16 +15,19 @@ namespace IdentityService.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ILogger<AuthController> _logger;
+        private readonly IDistributedCache _redisCache;
 
-        public AuthController(ILogger<AuthController> logger)
+        public AuthController(ILogger<AuthController> logger, IDistributedCache cache)
         {
             _logger = logger;
+            _redisCache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
         [AllowAnonymous]
         [HttpGet("1")]
         public string Get()
         {
+            _redisCache.SetString("name", "Holaaaa");
             return TokenService.CreateToken(new User() { Name = "Furkan", Role = RoleType.Normal });
         }
 
