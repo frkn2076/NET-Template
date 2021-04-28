@@ -1,6 +1,7 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Serilog;
+using System.IO;
 using System.Text;
 
 namespace Logger
