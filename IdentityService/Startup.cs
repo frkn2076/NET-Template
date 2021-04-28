@@ -52,7 +52,7 @@ namespace IdentityService
 
             services.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = Configuration.GetValue<string>("acheSettings: ConnectionString");
+                options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
             });
         }
 
