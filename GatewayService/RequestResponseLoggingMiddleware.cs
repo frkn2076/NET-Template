@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using System.IO;
 using System.Linq;
