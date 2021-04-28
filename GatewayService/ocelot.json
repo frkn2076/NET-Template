@@ -20,7 +20,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/api/product",
+      "DownstreamPathTemplate": "/Register/{url}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -28,8 +28,15 @@
           "Port": 5003
         }
       ],
-      "UpstreamPathTemplate": "/api/gateway/product",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/api/Register/{url}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "PeriodTimespan": 600,
+        "Limit": 30
+      }
     }
   ],
   "GlobalConfiguration": {
