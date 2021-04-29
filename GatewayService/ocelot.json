@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/Auth/{url}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
@@ -29,7 +29,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/Register/{url}",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
