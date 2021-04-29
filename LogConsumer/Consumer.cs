@@ -15,7 +15,6 @@ namespace LogConsumer
             using var channel = connection.CreateModel();
             channel.QueueDeclare(queue: "logging", durable: false, exclusive: false, autoDelete: false, arguments: null);
 
-            MongoRepo.InsertLog($"Logging started at {DateTime.Now.ToString("dd-MM-yyyy")}");
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
             {
