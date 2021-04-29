@@ -39,5 +39,22 @@ namespace IdentityService.Controllers
             var role = claims[ClaimTypes.Role];
             return $"{role} {name}";
         }
+
+        [AllowAnonymous]
+        [HttpPost("2")]
+        public string Post(Mode name)
+        {
+            return "Furkan";
+        }
+    }
+
+    public class Mode
+    {
+        public Mode()
+        {
+
+        }
+        public string email { get; set; }
+        public string password { get; set; }
     }
 }
