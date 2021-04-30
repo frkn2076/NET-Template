@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
 
 namespace IdentityService
@@ -22,9 +23,8 @@ namespace IdentityService
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "IdentityService", Version = "v1" }));
 
-            LoadSettings();
-
-            var key = Encoding.ASCII.GetBytes(JwtConfig.Secret);
+            var jwtSecretKey = Environment.GetEnvironmentVariable("JwtSecretKey");
+            var key = Encoding.ASCII.GetBytes(jwtSecretKey);
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -43,8 +43,8 @@ namespace IdentityService
                 };
             });
 
-
-            services.AddStackExchangeRedisCache(options => options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString"));
+            var redisCacheConnection = Environment.GetEnvironmentVariable("RedisCacheConnection");
+            services.AddStackExchangeRedisCache(options => options.Configuration = redisCacheConnection);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,11 +65,6 @@ namespace IdentityService
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
-        }
-
-        private void LoadSettings()
-        {
-            JwtConfig.Secret = Configuration.GetSection("JwtConfig:Secret").Value;
         }
     }
 }
