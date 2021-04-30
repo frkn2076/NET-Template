@@ -12,10 +12,7 @@ namespace Middleware
     {
         private readonly RequestDelegate _next;
 
-        public RequestResponseLoggingMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public RequestResponseLoggingMiddleware(RequestDelegate next) => _next = next;
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -45,7 +42,7 @@ namespace Middleware
 
                 var logRecord = JsonConvert.SerializeObject(message);
 
-                Publisher.Send("logging", logRecord);
+                Publisher.Send(logRecord);
 
                 await responseBodyStream.CopyToAsync(originalBodyStream);
             }
@@ -64,7 +61,7 @@ namespace Middleware
                 };
 
                 var logRecord = JsonConvert.SerializeObject(message);
-                Publisher.Send("logging", logRecord);
+                Publisher.Send(logRecord);
 
                 throw;
             }
