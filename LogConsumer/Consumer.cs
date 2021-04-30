@@ -10,10 +10,12 @@ namespace LogConsumer
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var logQueueHostName = Environment.GetEnvironmentVariable("LogQueueHostName");
+            var loggingQueue = Environment.GetEnvironmentVariable("LoggingQueue");
+            var factory = new ConnectionFactory() { HostName = logQueueHostName };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
-            channel.QueueDeclare(queue: "logging", durable: false, exclusive: false, autoDelete: false, arguments: null);
+            channel.QueueDeclare(queue: loggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
@@ -23,7 +25,7 @@ namespace LogConsumer
                 MongoRepo.InsertLog(message);
             };
 
-            channel.BasicConsume(queue: "logging", autoAck: true, consumer: consumer);
+            channel.BasicConsume(queue: loggingQueue, autoAck: true, consumer: consumer);
 
             Console.WriteLine("Press [enter] to exit.");
             Console.ReadLine();
