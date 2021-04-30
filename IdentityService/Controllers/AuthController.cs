@@ -1,11 +1,12 @@
-﻿using IdentityService.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Security.Claims;
+using TokenManager.Models;
+using TokenManager;
 
 namespace IdentityService.Controllers
 {
@@ -28,7 +29,7 @@ namespace IdentityService.Controllers
         public string Get()
         {
             _redisCache.SetString("name", "Holaaaa");
-            return TokenService.CreateToken(new User() { Name = "Furkan", Role = RoleType.Normal });
+            return Manager.CreateToken(new User() { Name = "Furkan", Role = RoleType.Normal });
         }
 
         [HttpGet("2")]

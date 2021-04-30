@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace IdentityService.Models
+namespace TokenManager.Models
 {
     public sealed class RoleType
     {
