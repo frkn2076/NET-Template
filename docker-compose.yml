@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  mongodb:
+    image: 'mongo'
+    container_name: 'mongo-container'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MongoUser}
+      - MONGO_INITDB_ROOT_PASSWORD=${MongoPassword}
+    ports:
+      - '27017:27017' 
