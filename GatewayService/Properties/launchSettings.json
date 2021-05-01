@@ -24,7 +24,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "LoggingQueue": "logging",
-        "LogQueueHostName": "localhost"
+        "LogQueueHostName": "localhost",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI"
       },
       "dotnetRunMessages": "true",
       "applicationUrl": "https://localhost:5000"
