@@ -6,10 +6,18 @@ namespace DatabaseAccess
 {
     public class MongoRepo
     {
-        private static string _mongoUser = Environment.GetEnvironmentVariable("MongoUser");
-        private static string _mongoPassword = Environment.GetEnvironmentVariable("MongoPassword");
-        private static IMongoClient _client = new MongoClient($"mongodb://{_mongoUser}:{_mongoPassword}@localhost:27017");
-        private static IMongoDatabase _logDatabase = _client.GetDatabase("LOGDB");
+        private static readonly IMongoClient _client = GetMongoClient();
+        private static readonly string _logDatabaseName = Environment.GetEnvironmentVariable("MongoLogDB");
+        private static readonly IMongoDatabase _logDatabase = _client.GetDatabase(_logDatabaseName);
+        private static IMongoClient GetMongoClient()
+        {
+            var user = Environment.GetEnvironmentVariable("MongoLogUser");
+            var password = Environment.GetEnvironmentVariable("MongoLogPassword");
+            var host = Environment.GetEnvironmentVariable("MongoLogHost");
+            var port = Environment.GetEnvironmentVariable("MongoLogPort");
+            var client = new MongoClient($"mongodb://{user}:{password}@{host}:{port}");
+            return client;
+        }
         private static IMongoCollection<BsonDocument> _collection = _logDatabase.GetCollection<BsonDocument>("Logs");
 
         public static void InsertLog(string log) => _collection.InsertOne(BsonDocument.Parse(log));
