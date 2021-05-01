@@ -30,6 +30,10 @@
       ],
       "UpstreamPathTemplate": "/api/Register/{url}",
       "UpstreamHttpMethod": [ "Get", "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "MySchemeKey",
+        "AllowedScopes": []
+      },
       "RateLimitOptions": {
         "ClientWhitelist": [],
         "EnableRateLimiting": true,
