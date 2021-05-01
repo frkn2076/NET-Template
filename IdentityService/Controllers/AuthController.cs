@@ -24,38 +24,20 @@ namespace IdentityService.Controllers
             _redisCache = cache ?? throw new ArgumentNullException(nameof(cache));
         }
 
-        [AllowAnonymous]
-        [HttpGet("1")]
-        public string Get()
+        [HttpGet("CreateToken")]
+        public string Post(User user)
         {
-            _redisCache.SetString("name", "Holaaaa");
+            //_redisCache.SetString("name", "Holaaaa");
             return Manager.CreateToken(new User() { Name = "Furkan", Role = RoleType.Normal });
         }
 
-        [HttpGet("2")]
-        public string Gett()
-        {
-            var claims = HttpContext.User.Claims.ToDictionary(x => x.Type, x => x.Value);
-            var name = claims[ClaimTypes.Name];
-            var role = claims[ClaimTypes.Role];
-            return $"{role} {name}";
-        }
-
-        [AllowAnonymous]
-        [HttpPost("2")]
-        public string Post(Mode name)
-        {
-            return "Furkan";
-        }
-    }
-
-    public class Mode
-    {
-        public Mode()
-        {
-
-        }
-        public string email { get; set; }
-        public string password { get; set; }
+        //[HttpGet("ValidateToken")]
+        //public string Get()
+        //{
+        //    var claims = HttpContext.User.Claims.ToDictionary(x => x.Type, x => x.Value);
+        //    var name = claims[ClaimTypes.Name];
+        //    var role = claims[ClaimTypes.Role];
+        //    return $"{role} {name}";
+        //}
     }
 }
