@@ -6,6 +6,7 @@
 * Rate limit is 30 requests/minute
 * RabbitMQ for logging system
 * Redis for distributed cache
+* Mapster for object mapping
 
 
 ## Docker
