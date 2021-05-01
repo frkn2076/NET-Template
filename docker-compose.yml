@@ -1,11 +1,24 @@
 version: '3.4'
 
 services:
-  mongodb:
+  mongologdb:
     image: 'mongo'
     container_name: 'mongo-container'
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MongoUser}
-      - MONGO_INITDB_ROOT_PASSWORD=${MongoPassword}
+      - MONGO_INITDB_DATABASE=${MongoLogDB}
+      - MONGO_INITDB_ROOT_USERNAME=${MongoLogUser}
+      - MONGO_INITDB_ROOT_PASSWORD=${MongoLogPassword}
     ports:
-      - '27017:27017' 
+      - '${MongoLogPort}:27017'
+    restart: always
+
+  postgreregisterdb:
+    image: 'postgres'
+    container_name: 'postgre-container'
+    environment:
+      - POSTGRES_DB=${PostgreRegisterDB}
+      - POSTGRES_USER=${PostgreRegisterUser}
+      - POSTGRES_PASSWORD=${PostgreRegisterPassword}
+    ports:
+      - '${PostgreRegisterPort}:5432'
+    restart: always
