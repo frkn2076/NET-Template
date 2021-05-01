@@ -17,7 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayService", "GatewaySe
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BDB9C80-4918-4165-9E5C-0A0533A873CA}"
 	ProjectSection(SolutionItems) = preProject
-		.env = .env
 		.gitignore = .gitignore
 		compose.yml = compose.yml
 		docker-compose.yml = docker-compose.yml
@@ -25,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoggerQueue", "LoggerQueue", "{F8CF4CA1-DB5A-4B41-8CB5-771FC71C708B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseAccess", "DatabaseAccess\DatabaseAccess.csproj", "{76CC6808-3E6E-4356-AF46-FC66255084D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDatabaseAccess", "DatabaseAccess\MongoDatabaseAccess.csproj", "{76CC6808-3E6E-4356-AF46-FC66255084D5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogConsumer", "LogConsumer\LogConsumer.csproj", "{D1CFAFF9-B576-4DB6-A00F-CC9BE0C66EEB}"
 EndProject
@@ -35,9 +34,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Middleware", "Middleware\Mi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1EC54B14-6D0E-4F33-89AA-2AD06C068087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deneme", "deneme\deneme.csproj", "{065AFE5B-D164-4B61-B076-377A37180603}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "deneme", "deneme\deneme.csproj", "{065AFE5B-D164-4B61-B076-377A37180603}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokenManager", "TokenManager\TokenManager.csproj", "{75C7BADA-0038-403D-992C-F3A2055C69FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenManager", "TokenManager\TokenManager.csproj", "{75C7BADA-0038-403D-992C-F3A2055C69FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterBusiness", "RegisterBusiness\RegisterBusiness.csproj", "{4F55E212-9A99-4662-A50C-5F2D14842732}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegisterRepository", "RegisterRepository\RegisterRepository.csproj", "{4F15AF3E-67E5-4C2F-8498-DBB60F228AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterDataAccess", "RegisterDataAccess\RegisterDataAccess.csproj", "{699949DA-D7F3-4E37-B0BE-90B68A5F6CB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +86,18 @@ Global
 		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F55E212-9A99-4662-A50C-5F2D14842732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F55E212-9A99-4662-A50C-5F2D14842732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F55E212-9A99-4662-A50C-5F2D14842732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F55E212-9A99-4662-A50C-5F2D14842732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F15AF3E-67E5-4C2F-8498-DBB60F228AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F15AF3E-67E5-4C2F-8498-DBB60F228AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F15AF3E-67E5-4C2F-8498-DBB60F228AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F15AF3E-67E5-4C2F-8498-DBB60F228AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699949DA-D7F3-4E37-B0BE-90B68A5F6CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699949DA-D7F3-4E37-B0BE-90B68A5F6CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699949DA-D7F3-4E37-B0BE-90B68A5F6CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699949DA-D7F3-4E37-B0BE-90B68A5F6CB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +112,9 @@ Global
 		{ACB15797-7958-479A-B44A-606EAA24A9D1} = {BC601146-F87B-438A-BC91-AAC3452B495F}
 		{065AFE5B-D164-4B61-B076-377A37180603} = {BC601146-F87B-438A-BC91-AAC3452B495F}
 		{75C7BADA-0038-403D-992C-F3A2055C69FD} = {E9FFE9C0-32DA-400A-82F0-186EA6E701EF}
+		{4F55E212-9A99-4662-A50C-5F2D14842732} = {FF5BC95D-BAE8-44B0-AC13-599133E2EA0C}
+		{4F15AF3E-67E5-4C2F-8498-DBB60F228AD2} = {FF5BC95D-BAE8-44B0-AC13-599133E2EA0C}
+		{699949DA-D7F3-4E37-B0BE-90B68A5F6CB9} = {FF5BC95D-BAE8-44B0-AC13-599133E2EA0C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B385B849-7D85-4824-9205-8B10B5F68129}
