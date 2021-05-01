@@ -5,8 +5,8 @@
       "environmentVariables": {
         "LoggingQueue": "logging",
         "LogQueueHostName": "localhost",
-        "MongoPassword": "adv12f5gfba3sd3",
-        "MongoUser": "Frkn"
+        "MongoLogDBUser": "root",
+        "MongoLogDBPassword": "12345"
       }
     }
   }
