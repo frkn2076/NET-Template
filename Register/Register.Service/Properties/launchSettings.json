@@ -1,0 +1,54 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:12967",
+      "sslPort": 44365
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "PostgreRegisterDB": "RegisterDB",
+        "PostgreRegisterUser": "root",
+        "PostgreRegisterPassword": "12345",
+        "PostgreRegisterHost": "localhost",
+        "PostgreRegisterPort": "5432",
+        "PostgreRegisterTimeout": "5",
+        "AppName": "NET-Template",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Register.Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "PostgreRegisterPassword": "12345",
+        "PostgreRegisterUser": "root",
+        "PostgreRegisterPort": "5432",
+        "AppName": "NET-Template",
+        "PostgreRegisterHost": "localhost",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
+        "PostgreRegisterTimeout": "5",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PostgreRegisterDB": "RegisterDB"
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5004"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  }
+}
