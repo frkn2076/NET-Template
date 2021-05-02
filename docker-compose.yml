@@ -1,24 +1,41 @@
 version: '3.4'
 
 services:
-  mongologdb:
-    image: 'mongo'
-    container_name: 'mongo-container'
-    environment:
-      - MONGO_INITDB_DATABASE=${MongoLogDB}
-      - MONGO_INITDB_ROOT_USERNAME=${MongoLogUser}
-      - MONGO_INITDB_ROOT_PASSWORD=${MongoLogPassword}
-    ports:
-      - '${MongoLogPort}:27017'
-    restart: always
-
-  postgreregisterdb:
+  registerdb:
     image: 'postgres'
-    container_name: 'postgre-container'
+    container_name: 'registerdb-container'
     environment:
       - POSTGRES_DB=${PostgreRegisterDB}
       - POSTGRES_USER=${PostgreRegisterUser}
       - POSTGRES_PASSWORD=${PostgreRegisterPassword}
     ports:
       - '${PostgreRegisterPort}:5432'
+    volumes:
+      - register-volume:/var/lib/postgresql/data
+      - ./Register/Register.Service/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
+    networks:
+      - register-network
+  
+  registerservice:
+    image: 'registerservice'
+    container_name: 'registerservice-container'
+    build: 
+      context: .
+      dockerfile: ./Register/Register.Service/Dockerfile
+    ports:
+      - '${RegisterServicePort}:80'
+    env_file:
+      - '${EnvironmentFile}'
+    depends_on:
+      - registerdb
+    restart: always
+    networks:
+      - register-network
+
+volumes:
+  register-volume:
+
+networks:
+  register-network:
+    driver: bridge
