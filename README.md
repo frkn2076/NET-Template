@@ -1,5 +1,7 @@
 # NET-Template
 
+WORK IN PROGRESS
+
 * gRPC for communication between microservices
 * Ocelot as a gateway
 * JWT as auth
