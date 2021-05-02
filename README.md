@@ -1,6 +1,6 @@
 # NET-Template
 
-WORK IN PROGRESS
+# WORK IN PROGRESS
 
 * gRPC for communication between microservices
 * Ocelot as a gateway
