@@ -1,4 +1,4 @@
-﻿using LogPublisher;
+﻿using Gateway.LogPublisher;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Middleware
+namespace Gateway.Middleware
 {
     public class RequestResponseLoggingMiddleware
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace LogPublisher
+namespace Gateway.LogPublisher
 {
     public class Publisher
     {

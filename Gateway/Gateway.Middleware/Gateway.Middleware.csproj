@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
+  
   <ItemGroup>
 	<FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\LogPublisher\LogPublisher.csproj" />
+    <ProjectReference Include="..\Gateway.LogPublisher\Gateway.LogPublisher.csproj" />
   </ItemGroup>
 
 </Project>

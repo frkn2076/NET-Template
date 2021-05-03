@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace GatewayService.Controllers
+namespace Gateway.Service.Controllers
 {
     [ApiController]
     [Route("[controller]")]
