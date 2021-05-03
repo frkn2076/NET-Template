@@ -22,3 +22,7 @@
 * docker-compose --env-file Development.env up
 * docker-compose --env-file Development.env down 
 * docker-compose --env-file Development.env down --rmi all
+
+## TO DO
+* Fluent Validation
+* Ef core to dapper
