@@ -1,7 +1,7 @@
-﻿using Mapster;
+﻿using Infra.CommonMessages;
+using Mapster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Register.Business.Hub;
 using Register.Business.Models;
 using Register.Service.ViewModels;
@@ -12,31 +12,34 @@ namespace RegisterService.Controllers
     [Route("[controller]")]
     public class RegisterController : ControllerBase
     {
-        private readonly ILogger<RegisterController> _logger;
         private readonly IBusinessManager _business;
 
-        public RegisterController(ILogger<RegisterController> logger, IBusinessManager business)
-        {
-            _logger = logger;
-            _business = business;
-        }
+        public RegisterController(IBusinessManager business) => _business = business;
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public bool Login(RegisterViewModel register)
+        public BaseResponse Login(RegisterRequest register)
         {
-            var model = register.Adapt<RegisterDTO>();
+            var model = register.Adapt<RegisterDTORequest>();
             var isSuccess = _business.Login(model);
-            return isSuccess;
+            return isSuccess ? BaseResponse.Success : BaseResponse.Fail;
         }
 
         [AllowAnonymous]
         [HttpPost("Register")]
-        public bool Register(RegisterViewModel register)
+        public BaseResponse Register(RegisterRequest register)
         {
-            var model = register.Adapt<RegisterDTO>();
-            var isSuccess = _business.Register(model);
-            return isSuccess;
+            var model = register.Adapt<RegisterDTORequest>();
+            var response = _business.Register(model);
+            switch (response)
+            {
+                case RegisterDTOResponse.Success:
+                    return BaseResponse.Success;
+                case RegisterDTOResponse.AlreadyExists:
+                    return BaseResponse.Create("User already exists");
+                default:
+                    return BaseResponse.Fail;
+            }
         }
     }
 }

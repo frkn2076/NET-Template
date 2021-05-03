@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Infra.CommonMessages\Infra.CommonMessages.csproj" />
     <ProjectReference Include="..\Register.Business\Register.Business.csproj" />
   </ItemGroup>
 

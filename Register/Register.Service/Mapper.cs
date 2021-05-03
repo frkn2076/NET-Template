@@ -8,7 +8,7 @@ namespace Register.Service
     {
         public static void MapsterInit()
         {
-            TypeAdapterConfig<RegisterViewModel, RegisterDTO>.NewConfig()
+            TypeAdapterConfig<RegisterRequest, RegisterDTORequest>.NewConfig()
                             .Map(dest => dest.Name, src => src.Name /*+ " " + src.Password*/);
         }
     }

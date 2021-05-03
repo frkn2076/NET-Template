@@ -8,19 +8,23 @@ namespace Register.Business.Hub.Implementation
         private readonly IRegisterRepo _registerRepo;
         public BusinessManager(IRegisterRepo registerRepo) => _registerRepo = registerRepo;
 
-        private bool Login(RegisterDTO model)
+        private bool Login(RegisterDTORequest model)
         {
             return _registerRepo.HasAny(model.Name, model.Password);
         }
 
-        private bool Register(RegisterDTO model)
+        private RegisterDTOResponse Register(RegisterDTORequest model)
         {
+            var isExist = _registerRepo.IsExist(model.Name);
+            if (isExist)
+                return RegisterDTOResponse.AlreadyExists;
+
             _registerRepo.Insert(model.Name, model.Password);
-            var isRegistered = _registerRepo.SaveChangesAsync().Result > 0;
-            return isRegistered;
+            var isSuccess = _registerRepo.SaveChangesAsync().Result > 0;
+            return isSuccess ? RegisterDTOResponse.Success : RegisterDTOResponse.Fail;
         }
 
-        bool IBusinessManager.Login(RegisterDTO model) => Login(model);
-        bool IBusinessManager.Register(RegisterDTO model) => Register(model);
+        bool IBusinessManager.Login(RegisterDTORequest model) => Login(model);
+        RegisterDTOResponse IBusinessManager.Register(RegisterDTORequest model) => Register(model);
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Register.Business.Models
+﻿namespace Register.Service.ViewModels
 {
-    public class RegisterDTO
+    public class RegisterRequest
     {
         public string Name { get; set; }
         public string Password { get; set; }
