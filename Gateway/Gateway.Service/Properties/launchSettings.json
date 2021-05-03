@@ -14,7 +14,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "LoggingQueue": "logging",
+        "LogQueueHostName": "localhost",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI"
       }
     },
     "Gateway.Service": {
@@ -22,12 +25,15 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "LoggingQueue": "logging",
+        "LogQueueHostName": "localhost",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      "applicationUrl": "https://localhost:5000"
     },
-    "Docker (1)": {
+    "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
