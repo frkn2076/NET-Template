@@ -8,8 +8,8 @@ namespace Register.Service
     {
         public static void MapsterInit()
         {
-            TypeAdapterConfig<RegisterRequest, RegisterDTORequest>.NewConfig()
-                            .Map(dest => dest.Name, src => src.Name /*+ " " + src.Password*/);
+            TypeAdapterConfig<RegisterRequest, RegisterDTORequest>.NewConfig();
+                            //.Map(dest => dest.Name, src => src.Name + " " + src.Password);
         }
     }
 }
