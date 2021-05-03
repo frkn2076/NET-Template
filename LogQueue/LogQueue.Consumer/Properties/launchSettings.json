@@ -1,13 +1,16 @@
 {
   "profiles": {
-    "LogConsumer": {
+    "LogQueue.Consumer": {
       "commandName": "Project",
       "environmentVariables": {
+        "MongoLogDBPassword": "12345",
         "LoggingQueue": "logging",
-        "LogQueueHostName": "localhost",
         "MongoLogDBUser": "root",
-        "MongoLogDBPassword": "12345"
+        "LogQueueHostName": "localhost"
       }
+    },
+    "Docker": {
+      "commandName": "Docker"
     }
   }
 }

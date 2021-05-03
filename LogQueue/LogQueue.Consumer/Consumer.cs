@@ -1,10 +1,10 @@
-﻿using DatabaseAccess;
+﻿using LogQueue.DataAccess;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
 
-namespace LogConsumer
+namespace LogQueue.Consumer
 {
     class Consumer
     {
