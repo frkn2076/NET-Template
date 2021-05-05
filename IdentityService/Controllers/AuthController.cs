@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
-using System.Security.Claims;
-using TokenManager.Models;
 using TokenManager;
+using TokenManager.Models;
 
 namespace IdentityService.Controllers
 {
