@@ -13,6 +13,7 @@ using Register.DataAccess;
 using Register.Repository;
 using Register.Repository.Implementation;
 using System;
+using System.Reflection;
 using System.Text;
 
 namespace Register.Service
@@ -29,15 +30,10 @@ namespace Register.Service
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegisterService", Version = "v1" }));
 
-            var host = Environment.GetEnvironmentVariable("PostgreRegisterHost");
-            var port = Environment.GetEnvironmentVariable("PostgreRegisterPort");
-            var database = Environment.GetEnvironmentVariable("PostgreRegisterDB");
-            var user = Environment.GetEnvironmentVariable("PostgreRegisterUser");
-            var password = Environment.GetEnvironmentVariable("PostgreRegisterPassword");
-            var timeout = Environment.GetEnvironmentVariable("PostgreRegisterTimeout");
-            var pgsqlConnecton = $"Server={host};Port={port};Userid={user};Password={password};Timeout={timeout};Database={database}";
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContextPool<AppDBContext>(options => options.UseNpgsql(pgsqlConnecton));
+            var pgsqlConnecton = Helper.GetPGSQLConnectionString();
+            services.AddDbContextPool<AppDBContext>(options => options.UseNpgsql(pgsqlConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
 
             services.AddScoped<IRegisterRepo, RegisterRepo>();
             services.AddScoped<IBusinessManager, BusinessManager>();
@@ -72,6 +68,8 @@ namespace Register.Service
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegisterService v1"));
             }
+
+            app.MigrateDatabaseAndTables();
 
             Mapper.MapsterInit();
 
