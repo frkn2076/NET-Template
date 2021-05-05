@@ -3,14 +3,26 @@
     "LogQueue.Consumer": {
       "commandName": "Project",
       "environmentVariables": {
-        "MongoLogDBPassword": "12345",
-        "LoggingQueue": "logging",
-        "MongoLogDBUser": "root",
-        "LogQueueHostName": "localhost"
+        "MongoLogUser": "root",
+        "MongoLogPassword": "12345",
+        "MongoLogHost": "localhost",
+        "MongoLogPort": "27017",
+        "MongoLogDB": "LogDB",
+        "LogQueueHostName": "localhost",
+        "LoggingQueue": "logging"
       }
     },
     "Docker": {
-      "commandName": "Docker"
+      "commandName": "Docker",
+      "environmentVariables": {
+        "MongoLogUser": "root",
+        "MongoLogPassword": "12345",
+        "MongoLogHost": "localhost",
+        "MongoLogPort": "27017",
+        "MongoLogDB": "LogDB",
+        "LogQueueHostName": "localhost",
+        "LoggingQueue": "logging"
+      }
     }
   }
 }
