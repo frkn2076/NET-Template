@@ -4,7 +4,7 @@ using System;
 
 namespace LogQueue.DataAccess
 {
-    public class MongoRepo
+    public static class MongoRepo
     {
         private static readonly IMongoClient _client;
         private static readonly IMongoDatabase _logDatabase;
