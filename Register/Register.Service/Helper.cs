@@ -16,7 +16,5 @@ namespace Register.Service
             var pgsqlConnecton = $"Server={host};Port={port};Userid={user};Password={password};Timeout={timeout};Database={database}";
             return pgsqlConnecton;
         }
-
-        
     }
 }
