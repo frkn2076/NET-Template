@@ -23,6 +23,6 @@ namespace LogQueue.DataAccess
             _logCollection = _logDatabase.GetCollection<BsonDocument>("Logs");
         }
 
-        public static void InsertLog(string log) => _logCollection.InsertOne(BsonDocument.Parse(log));
+        public static void InsertLog(string log) =>_logCollection.InsertOne(BsonDocument.Parse(log));
     }
 }
