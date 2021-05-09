@@ -33,22 +33,25 @@ namespace Gateway.Service
 
             var jwtSecretKey = Environment.GetEnvironmentVariable("JwtSecretKey");
             var key = Encoding.ASCII.GetBytes(jwtSecretKey);
-            services.AddAuthentication(x =>
+            services.AddAuthentication(o =>
             {
-                x.DefaultAuthenticateScheme = "MySchemeKey";
-            })
-            .AddJwtBearer("MySchemeKey", x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
+                o.DefaultAuthenticateScheme = "TestKey";
             });
+
+            services.AddAuthentication()
+                    .AddJwtBearer("TestKey", x =>
+                    {
+                        x.SaveToken = true; 
+                        x.RequireHttpsMetadata = false;
+                        x.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ClockSkew = TimeSpan.Zero,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(key),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        }; ;
+                    });
 
             services.AddOcelot();
         }
@@ -69,7 +72,7 @@ namespace Gateway.Service
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseOcelot();
 
