@@ -12,6 +12,7 @@ namespace Register.DataAccess
         private readonly string AppName = Environment.GetEnvironmentVariable("AppName");
 
         public DbSet<Registration> Registrations { get; set; }
+        public DbSet<Authentication> Authentications { get; set; }
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
