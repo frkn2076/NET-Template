@@ -5,6 +5,7 @@
     <UserSecretsId>fdd4d068-1312-48a8-9e3d-f8d62c3ffafa</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
