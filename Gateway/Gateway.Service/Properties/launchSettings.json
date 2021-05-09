@@ -22,7 +22,6 @@
     },
     "Gateway.Service": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "LoggingQueue": "logging",
