@@ -1,25 +1,6 @@
 ﻿{
   "Routes": [
     {
-      "DownstreamPathTemplate": "/Auth/{url}",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5002
-        }
-      ],
-      "UpstreamPathTemplate": "/api/Auth/{url}",
-      "UpstreamHttpMethod": [ "Get", "Post" ],
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1m",
-        "PeriodTimespan": 600,
-        "Limit": 30
-      }
-    },
-    {
       "DownstreamPathTemplate": "/Register/{url}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -30,8 +11,27 @@
       ],
       "UpstreamPathTemplate": "/api/Register/{url}",
       "UpstreamHttpMethod": [ "Get", "Post" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "1m",
+        "PeriodTimespan": 600,
+        "Limit": 30
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/Dummy/{url}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5005
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Dummy/{url}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "AuthenticationOptions": {
-        "AuthenticationProviderKey": "MySchemeKey",
+        "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []
       },
       "RateLimitOptions": {
