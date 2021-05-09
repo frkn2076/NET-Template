@@ -14,5 +14,9 @@
 
         public bool IsError { get; set; }
         public string Message { get; set; }
+        public string AccessToken { get; set; }
+        public int AccessTokenExpiresIn { get; set; }
+        public string RefreshToken { get; set; }
+        public string RefreshTokenExpiresIn { get; set; }
     }
 }
