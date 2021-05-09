@@ -29,39 +29,33 @@ namespace Dummy.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dummy.API", Version = "v1" });
             });
 
-
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("Y2F0Y2hlciUyMHdvbmclMjBsb3ZlJTIwLm5ldA=="));
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey,
-                ValidateIssuer = true,
-                ValidIssuer = "localhost",
-                ValidateAudience = true,
-                ValidAudience = "Furkan Öztürk",
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero,
-                RequireExpirationTime = true,
-            };
-
+            var jwtSecretKey = "llgfusXQtnrxgKtWKpqEzLqAutpYWglI";
+            var key = Encoding.ASCII.GetBytes(jwtSecretKey);
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = "TestKey";
-            })
-            .AddJwtBearer("TestKey", x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.TokenValidationParameters = tokenValidationParameters;
             });
 
-
+            services.AddAuthentication()
+                    .AddJwtBearer("TestKey", x =>
+                    {
+                        x.SaveToken = true;
+                        x.RequireHttpsMetadata = false;
+                        x.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ClockSkew = TimeSpan.Zero,
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(key),
+                            ValidateIssuer = false,
+                            ValidateAudience = false
+                        };
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

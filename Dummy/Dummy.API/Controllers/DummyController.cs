@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace Dummy.API.Controllers
 {
@@ -19,6 +20,7 @@ namespace Dummy.API.Controllers
         [HttpGet("dummy")]
         public string Get()
         {
+            var a = User.Claims.ToList();
             return "Success";
         }
     }
