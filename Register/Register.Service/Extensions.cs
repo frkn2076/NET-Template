@@ -16,9 +16,7 @@ namespace Register.Service
             {
                 using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>()?.CreateScope();
                 var context = serviceScope?.ServiceProvider.GetRequiredService<AppDBContext>();
-                context.Database.Migrate();
-                RelationalDatabaseCreator databaseCreator = (RelationalDatabaseCreator)context.Database.GetService<IDatabaseCreator>();
-                databaseCreator.CreateTables();
+                context.Database.EnsureCreated();
             }
             catch (Exception ex)
             {
