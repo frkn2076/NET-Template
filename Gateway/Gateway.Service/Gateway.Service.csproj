@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Infra.Extensions\Infra.Extensions.csproj" />
     <ProjectReference Include="..\Gateway.Middleware\Gateway.Middleware.csproj" />
   </ItemGroup>
 
