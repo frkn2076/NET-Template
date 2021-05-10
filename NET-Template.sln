@@ -3,18 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityProvider", "IdentityProvider", "{E9FFE9C0-32DA-400A-82F0-186EA6E701EF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService", "IdentityService\IdentityService.csproj", "{E50113A4-376F-463D-9732-9043103AF789}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BDB9C80-4918-4165-9E5C-0A0533A873CA}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		compose.yml = compose.yml
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenManager", "TokenManager\TokenManager.csproj", "{75C7BADA-0038-403D-992C-F3A2055C69FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Register", "Register", "{A30866EE-2F63-4F50-9524-57316C429284}"
 EndProject
@@ -44,20 +38,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogQueue.Consumer", "LogQue
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogQueue.DataAccess", "LogQueue\LogQueue.DataAccess\LogQueue.DataAccess.csproj", "{4052AC36-F094-44D5-B510-E54336487EBB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dummy", "Dummy", "{63518243-C051-45BE-ADF9-A014E186BF76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy.API", "Dummy\Dummy.API\Dummy.API.csproj", "{1FDBE8C8-32EC-4AEF-8554-02D174F6FF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Extensions", "Infra\Infra.Extensions\Infra.Extensions.csproj", "{078671A5-B156-456E-BE81-6B8ED15CB91F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifier", "Notifier", "{F106F563-3798-45D8-B381-4FC6840AE3E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier.Service", "Notifier\Notifier.Service\Notifier.Service.csproj", "{D0ABE046-8958-4568-9CEC-4E7FC703E984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifier.Business", "Notifier\Notifier.Business\Notifier.Business.csproj", "{513A56D4-D750-476A-9A83-6430FA91FFD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E50113A4-376F-463D-9732-9043103AF789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E50113A4-376F-463D-9732-9043103AF789}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E50113A4-376F-463D-9732-9043103AF789}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E50113A4-376F-463D-9732-9043103AF789}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75C7BADA-0038-403D-992C-F3A2055C69FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{032B4A35-6EBF-4173-8B59-CF4F9F0ED3A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{032B4A35-6EBF-4173-8B59-CF4F9F0ED3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032B4A35-6EBF-4173-8B59-CF4F9F0ED3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -98,13 +96,27 @@ Global
 		{4052AC36-F094-44D5-B510-E54336487EBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4052AC36-F094-44D5-B510-E54336487EBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4052AC36-F094-44D5-B510-E54336487EBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FDBE8C8-32EC-4AEF-8554-02D174F6FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FDBE8C8-32EC-4AEF-8554-02D174F6FF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FDBE8C8-32EC-4AEF-8554-02D174F6FF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FDBE8C8-32EC-4AEF-8554-02D174F6FF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{078671A5-B156-456E-BE81-6B8ED15CB91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{078671A5-B156-456E-BE81-6B8ED15CB91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{078671A5-B156-456E-BE81-6B8ED15CB91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{078671A5-B156-456E-BE81-6B8ED15CB91F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0ABE046-8958-4568-9CEC-4E7FC703E984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0ABE046-8958-4568-9CEC-4E7FC703E984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0ABE046-8958-4568-9CEC-4E7FC703E984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0ABE046-8958-4568-9CEC-4E7FC703E984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513A56D4-D750-476A-9A83-6430FA91FFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513A56D4-D750-476A-9A83-6430FA91FFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513A56D4-D750-476A-9A83-6430FA91FFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513A56D4-D750-476A-9A83-6430FA91FFD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E50113A4-376F-463D-9732-9043103AF789} = {E9FFE9C0-32DA-400A-82F0-186EA6E701EF}
-		{75C7BADA-0038-403D-992C-F3A2055C69FD} = {E9FFE9C0-32DA-400A-82F0-186EA6E701EF}
 		{032B4A35-6EBF-4173-8B59-CF4F9F0ED3A1} = {A30866EE-2F63-4F50-9524-57316C429284}
 		{E065B537-BC77-4679-92C7-A2267A6D880D} = {A30866EE-2F63-4F50-9524-57316C429284}
 		{F3C89704-50FA-47A9-9695-41C0BF0EEDC9} = {A30866EE-2F63-4F50-9524-57316C429284}
@@ -115,6 +127,10 @@ Global
 		{95CA3692-D337-4FBC-839E-DCB6E9030A4F} = {622377BE-9BE6-4B44-9EDC-8DEA6C498D55}
 		{1328E1FC-D26F-412A-B2E7-2AF1A1014F9B} = {DD23A355-388F-49D1-BCC6-43BD8B49CAE4}
 		{4052AC36-F094-44D5-B510-E54336487EBB} = {DD23A355-388F-49D1-BCC6-43BD8B49CAE4}
+		{1FDBE8C8-32EC-4AEF-8554-02D174F6FF25} = {63518243-C051-45BE-ADF9-A014E186BF76}
+		{078671A5-B156-456E-BE81-6B8ED15CB91F} = {622377BE-9BE6-4B44-9EDC-8DEA6C498D55}
+		{D0ABE046-8958-4568-9CEC-4E7FC703E984} = {F106F563-3798-45D8-B381-4FC6840AE3E2}
+		{513A56D4-D750-476A-9A83-6430FA91FFD2} = {F106F563-3798-45D8-B381-4FC6840AE3E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B385B849-7D85-4824-9205-8B10B5F68129}
