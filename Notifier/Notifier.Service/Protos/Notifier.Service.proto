@@ -1,0 +1,19 @@
+syntax = "proto3";
+option csharp_namespace = "Notifier.Service";
+
+package notification;
+
+service Notifier {
+  rpc Push (NotifierRequest) returns (NotifierResponse);
+}
+
+message NotifierRequest {
+  string from = 1;
+  string to = 2;
+  string header = 3;
+  string body = 4;
+}
+
+message NotifierResponse {
+  bool isSuccess = 1;
+}
