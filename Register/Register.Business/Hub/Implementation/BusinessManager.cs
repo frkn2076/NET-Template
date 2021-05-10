@@ -20,7 +20,7 @@ namespace Register.Business.Hub.Implementation
                 return RegisterDTOResponse.AlreadyExists;
 
             _registerRepo.Insert(model.Name, model.Password);
-            var isSuccess = _registerRepo.SaveChangesAsync().Result > 0;
+            var isSuccess = _registerRepo.SaveChanges() > 0;
             return isSuccess ? RegisterDTOResponse.Success : RegisterDTOResponse.Fail;
         }
 

@@ -13,12 +13,13 @@ namespace Register.DataAccess
 
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Authentication> Authentications { get; set; }
+        public object First { get; set; }
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => base.OnConfiguring(optionsBuilder);
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        public override int SaveChanges()
         {
             var entries = ChangeTracker.Entries().Where(e => e.Entity is Audit && (e.State == EntityState.Added || e.State == EntityState.Modified));
 
@@ -39,7 +40,7 @@ namespace Register.DataAccess
                 ((Audit)entityEntry.Entity).ModifiedBy = AppName;
             }
 
-            return await base.SaveChangesAsync(cancellationToken);
+            return base.SaveChanges();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace Register.DataAccess.Entities
         public string AccessToken { get; set; }
         [Required]
         public string RefreshToken { get; set; }
+        [Required]
+        public int RefreshTokenSeconds { get; set; }
     }
 }

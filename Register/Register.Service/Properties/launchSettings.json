@@ -14,20 +14,19 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "PostgreRegisterDB": "RegisterDB",
-        "PostgreRegisterUser": "root",
         "PostgreRegisterPassword": "12345",
-        "PostgreRegisterHost": "localhost",
+        "PostgreRegisterUser": "root",
         "PostgreRegisterPort": "5432",
-        "PostgreRegisterTimeout": "5",
         "AppName": "NET-Template",
+        "PostgreRegisterHost": "localhost",
         "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "PostgreRegisterTimeout": "5",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PostgreRegisterDB": "RegisterDB"
       }
     },
     "Register.Service": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "PostgreRegisterPassword": "12345",

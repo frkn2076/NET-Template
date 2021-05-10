@@ -1,20 +1,16 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Register.Business.Hub;
 using Register.Business.Hub.Implementation;
 using Register.DataAccess;
 using Register.Repository;
 using Register.Repository.Implementation;
-using System;
 using System.Reflection;
-using System.Text;
 
 namespace Register.Service
 {
@@ -36,27 +32,9 @@ namespace Register.Service
             services.AddDbContextPool<AppDBContext>(options => options.UseNpgsql(pgsqlConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
 
             services.AddScoped<IRegisterRepo, RegisterRepo>();
+            services.AddScoped<IAuthenticationRepo, AuthenticationRepo>();
             services.AddScoped<IBusinessManager, BusinessManager>();
-
-            var jwtSecretKey = Environment.GetEnvironmentVariable("JwtSecretKey");
-            var key = Encoding.ASCII.GetBytes(jwtSecretKey);
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+            services.AddScoped<IAuthenticationManager, AuthenticationManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,12 +55,9 @@ namespace Register.Service
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

@@ -2,7 +2,6 @@
 using Register.DataAccess;
 using Register.DataAccess.Entities;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Register.Repository.Implementation
 {
@@ -15,11 +14,11 @@ namespace Register.Repository.Implementation
         private bool IsExist(string name) => _context.Registrations.AsNoTracking().Any(register => register.Name == name);
         private bool HasAny(string name, string password) => _context.Registrations.AsNoTracking().Any(register => register.Name == name && register.Password == password);
         private void Insert(string name, string password) => _context.Registrations.Add(new Registration() { Name = name, Password = password});
-        private async Task<int> SaveChangesAsync() => await _context.SaveChangesAsync();
+        private int SaveChanges() => _context.SaveChanges();
 
         bool IRegisterRepo.IsExist(string name) => IsExist(name);
         bool IRegisterRepo.HasAny(string name, string password) => HasAny(name, password);
         void IRegisterRepo.Insert(string name, string password) => Insert(name, password);
-        Task<int> IRegisterRepo.SaveChangesAsync() => SaveChangesAsync();
+        int IRegisterRepo.SaveChanges() => SaveChanges();
     }
 }
