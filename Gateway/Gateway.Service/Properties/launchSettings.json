@@ -16,6 +16,7 @@
       "environmentVariables": {
         "LoggingQueue": "logging",
         "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
+        "JwtScheme": "TestKey",
         "LogQueueHostName": "localhost",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -26,6 +27,7 @@
       "environmentVariables": {
         "LoggingQueue": "logging",
         "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
+        "JwtScheme": "TestKey",
         "LogQueueHostName": "localhost",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
