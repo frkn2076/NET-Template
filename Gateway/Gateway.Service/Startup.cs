@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gateway.Middleware;
+using Infra.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,26 +33,9 @@ namespace Gateway.Service
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "GatewayService", Version = "v1" }));
 
             var jwtSecretKey = Environment.GetEnvironmentVariable("JwtSecretKey");
-            var key = Encoding.ASCII.GetBytes(jwtSecretKey);
-            services.AddAuthentication(o =>
-            {
-                o.DefaultAuthenticateScheme = "TestKey";
-            });
+            var scheme = Environment.GetEnvironmentVariable("JwtScheme");
 
-            services.AddAuthentication()
-                    .AddJwtBearer("TestKey", x =>
-                    {
-                        x.SaveToken = true; 
-                        x.RequireHttpsMetadata = false;
-                        x.TokenValidationParameters = new TokenValidationParameters
-                        {
-                            ClockSkew = TimeSpan.Zero,
-                            ValidateIssuerSigningKey = true,
-                            IssuerSigningKey = new SymmetricSecurityKey(key),
-                            ValidateIssuer = false,
-                            ValidateAudience = false
-                        }; ;
-                    });
+            services.JWTRegistration(jwtSecretKey, scheme);
 
             services.AddOcelot();
         }
