@@ -3,6 +3,7 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Text;
+using System.Threading;
 
 namespace LogQueue.Consumer
 {
@@ -27,8 +28,7 @@ namespace LogQueue.Consumer
 
             channel.BasicConsume(queue: loggingQueue, autoAck: true, consumer: consumer);
 
-            Console.WriteLine("Press [enter] to exit.");
-            Console.ReadLine();
+            new ManualResetEvent(false).WaitOne();
         }
     }
 }
