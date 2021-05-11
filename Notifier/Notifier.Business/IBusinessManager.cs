@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Notifier.Business
 {
     public interface IBusinessManager
     {
-        Task SendMail(string header, string subject, string body, params string[] toList);
+        Task SendMailAsync(string header, string subject, string body, params string[] toList);
     }
 }
