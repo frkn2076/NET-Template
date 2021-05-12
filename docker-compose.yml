@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   registerdb:
-    image: 'postgres'
+    image: 'postgres:13-alpine'
     container_name: 'registerdb-container'
     environment:
       - POSTGRES_DB=${PostgreRegisterDB}
@@ -12,30 +12,65 @@ services:
       - '${PostgreRegisterPort}:5432'
     volumes:
       - register-volume:/var/lib/postgresql/data
-      - ./Register/Register.Service/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
-    networks:
-      - register-network
   
-  registerservice:
-    image: 'registerservice'
-    container_name: 'registerservice-container'
-    build: 
-      context: .
-      dockerfile: ./Register/Register.Service/Dockerfile
+  #registerservice:
+  #  image: 'registerservice'
+  #  container_name: 'registerservice-container'
+  #  build: 
+  #    context: .
+  #    dockerfile: ./Register/Register.Service/Dockerfile
+  #  ports:
+  #    - '${RegisterServicePort}:80'
+  #  env_file:
+  #    - '${EnvironmentFile}'
+  #  depends_on:
+  #    - registerdb
+  #  restart: always
+  #  networks:
+  #    - register-network
+      
+  logdb:
+    image: 'mongo'
+    container_name: 'logdb-container'
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MongoLogUser}
+      - MONGO_INITDB_ROOT_PASSWORD=${MongoLogPassword}
     ports:
-      - '${RegisterServicePort}:80'
-    env_file:
-      - '${EnvironmentFile}'
-    depends_on:
-      - registerdb
+      - '${MongoLogPort}:27017'
+    volumes:
+      - log-volume:/data/db
     restart: always
-    networks:
-      - register-network
+      
+  #logconsumer:
+  #  image: 'logconsumer'
+  #  container_name: 'logconsumer-container'
+  #  build: 
+  #    context: .
+  #    dockerfile: ./LogQueue/LogQueue.Consumer/Dockerfile
+  #  env_file:
+  #    - '${EnvironmentFile}'
+  #  depends_on:
+  #    - logdb
+  #  restart: always
+  #  networks:
+  #    - log-network
+      
+  rabbitmq: # login guest:guest
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq-container'
+    hostname: 'rabbitmq'
+    ports:
+    - '5672:5672'
+    - '15672:15672'
+    
 
 volumes:
   register-volume:
+  log-volume:
 
-networks:
-  register-network:
-    driver: bridge
+#networks:
+#  register-network:
+#    driver: bridge
+#  register-network:
+#    driver: bridge
