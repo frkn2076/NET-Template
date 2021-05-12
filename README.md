@@ -4,7 +4,7 @@
 
 * gRPC for communication between microservices
 * Ocelot as a gateway
-* IdentityServer4 OAuth 2.0 //JWT Token with client_credentials from IdentityServer4 and will use this token for secure
+* JWT Authorization by Ocelot
 * Rate limit is 30 requests/minute
 * RabbitMQ for logging system
 * Redis for distributed cache
