@@ -1,3 +1,10 @@
+using Infra.Extensions;
+using Infra.Helper;
+using Infra.Localizer;
+using Infra.Resource.DataAccess;
+using Infra.Resource.Implementation;
+using Infra.Resource.Repository;
+using Infra.Resource.Repository.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +17,7 @@ using Register.Business.Hub.Implementation;
 using Register.DataAccess;
 using Register.Repository;
 using Register.Repository.Implementation;
+using System;
 using System.Reflection;
 
 namespace Register.Service
@@ -28,13 +36,20 @@ namespace Register.Service
 
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            var pgsqlConnecton = Helper.GetPGSQLConnectionString();
-            services.AddDbContextPool<AppDBContext>(options => options.UseNpgsql(pgsqlConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
+            var registerDBName = Environment.GetEnvironmentVariable("PostgreRegisterDB");
+            var registerDBConnecton = Helper.GetPostgreDatabaseConnection(registerDBName);
+            services.AddDbContextPool<RegisterDBContext>(options => options.UseNpgsql(registerDBConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
+
+            var localizerDBName = Environment.GetEnvironmentVariable("PostgreLocalizerDB");
+            var localizerDBConnecton = Helper.GetPostgreDatabaseConnection(localizerDBName);
+            services.AddDbContextPool<LocalizerDBContext>(options => options.UseNpgsql(localizerDBConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
 
             services.AddScoped<IRegisterRepo, RegisterRepo>();
             services.AddScoped<IAuthenticationRepo, AuthenticationRepo>();
             services.AddScoped<IBusinessManager, BusinessManager>();
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+            services.AddScoped<ILocalizationRepo, LocalizationRepo>();
+            services.AddScoped<ILocalizer, Localizer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +62,8 @@ namespace Register.Service
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegisterService v1"));
             }
 
-            app.MigrateDatabaseAndTables();
+            app.MigrateDatabaseAndTables<RegisterDBContext>();
+            app.MigrateDatabaseAndTables<LocalizerDBContext>();
 
             Mapper.MapsterInit();
 
