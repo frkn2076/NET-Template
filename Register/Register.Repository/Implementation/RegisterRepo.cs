@@ -7,9 +7,9 @@ namespace Register.Repository.Implementation
 {
     public class RegisterRepo : IRegisterRepo
     {
-        private readonly AppDBContext _context;
+        private readonly RegisterDBContext _context;
 
-        public RegisterRepo(AppDBContext context) => _context = context;
+        public RegisterRepo(RegisterDBContext context) => _context = context;
 
         private bool IsExist(string name) => _context.Registrations.AsNoTracking().Any(register => register.Name == name);
         private bool HasAny(string name, string password) => _context.Registrations.AsNoTracking().Any(register => register.Name == name && register.Password == password);

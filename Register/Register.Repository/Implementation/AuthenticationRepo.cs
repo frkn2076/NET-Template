@@ -7,9 +7,9 @@ namespace Register.Repository.Implementation
 {
     public class AuthenticationRepo : IAuthenticationRepo
     {
-        private readonly AppDBContext _context;
+        private readonly RegisterDBContext _context;
 
-        public AuthenticationRepo(AppDBContext context) => _context = context;
+        public AuthenticationRepo(RegisterDBContext context) => _context = context;
 
         private void Insert(Authentication authentication) => _context.Authentications.Add(authentication);
         private Authentication First(string refreshToken) => _context.Authentications.AsNoTracking().FirstOrDefault(x => x.RefreshToken == refreshToken);
