@@ -1,4 +1,5 @@
 ﻿using Infra.CommonMessages;
+using Infra.Localizer;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Register.Business.Hub;
@@ -13,14 +14,16 @@ namespace RegisterService.Controllers
     {
         private readonly IBusinessManager _business;
         private readonly IAuthenticationManager _authentication;
+        private readonly ILocalizer _localizer;
         private const int _accessTokenExpireIn = 30;
         private const int _refreshTokenExpireIn = 300;
         private const string ClaimName = "Name";
 
-        public RegisterController(IBusinessManager business, IAuthenticationManager authentication)
+        public RegisterController(IBusinessManager business, IAuthenticationManager authentication, ILocalizer localizer)
         {
             _business = business;
             _authentication = authentication;
+            _localizer = localizer;
         }
 
         /// <summary>
