@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Infra.Core.DataAccess;
+using System.ComponentModel.DataAnnotations;
 
 namespace Register.DataAccess.Entities
 {
