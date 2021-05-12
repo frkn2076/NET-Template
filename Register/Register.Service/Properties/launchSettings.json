@@ -22,7 +22,8 @@
         "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
         "PostgreRegisterTimeout": "5",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PostgreRegisterDB": "RegisterDB"
+        "PostgreRegisterDB": "RegisterDB",
+        "PostgreLocalizerDB": "LocalizerDB"
       }
     },
     "Register.Service": {
@@ -37,7 +38,8 @@
         "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
         "PostgreRegisterTimeout": "5",
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "PostgreRegisterDB": "RegisterDB"
+        "PostgreRegisterDB": "RegisterDB",
+        "PostgreLocalizerDB": "LocalizerDB"
       },
       "dotnetRunMessages": "true",
       "applicationUrl": "https://localhost:5004"
