@@ -9,7 +9,7 @@
         "MongoLogPort": "27017",
         "MongoLogDB": "LogDB",
         "LogQueueHostName": "localhost",
-        "LoggingQueue": "logging"
+        "ReqResLoggingQueue": "reqreslogging"
       }
     },
     "Docker": {
@@ -21,7 +21,7 @@
         "MongoLogPort": "27017",
         "MongoLogDB": "LogDB",
         "LogQueueHostName": "localhost",
-        "LoggingQueue": "logging"
+        "ReqResLoggingQueue": "reqreslogging"
       }
     }
   }

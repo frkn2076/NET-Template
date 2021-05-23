@@ -13,22 +13,24 @@ services:
     volumes:
       - register-volume:/var/lib/postgresql/data
     restart: always
+    networks:
+      - register-network
   
-  #registerservice:
-  #  image: 'registerservice'
-  #  container_name: 'registerservice-container'
-  #  build: 
-  #    context: .
-  #    dockerfile: ./Register/Register.Service/Dockerfile
-  #  ports:
-  #    - '${RegisterServicePort}:80'
-  #  env_file:
-  #    - '${EnvironmentFile}'
-  #  depends_on:
-  #    - registerdb
-  #  restart: always
-  #  networks:
-  #    - register-network
+  registerAPI:
+    image: 'registerAPI'
+    container_name: 'registerAPI-container'
+    build: 
+      context: .
+      dockerfile: ./Register/Register.API/Dockerfile
+    ports:
+      - '${RegisterAPIPort}:80'
+    env_file:
+      - '${EnvironmentFile}'
+    depends_on:
+      - registerdb
+    restart: always
+    networks:
+      - register-network
       
   logdb:
     image: 'mongo'
@@ -61,13 +63,24 @@ services:
     container_name: 'rabbitmq-container'
     hostname: 'rabbitmq'
     ports:
-    - '5672:5672'
-    - '15672:15672'
+      - '5672:5672'
+      - '15672:15672'
+    
+  redis:
+    image: redis:alpine
+    container_name: 'redis-container'
+    hostname: 'localhost'
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+    
     
 
 volumes:
   register-volume:
   log-volume:
+  redis-data:
 
 #networks:
 #  register-network:
