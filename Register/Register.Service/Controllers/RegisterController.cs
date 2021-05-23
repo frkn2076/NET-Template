@@ -2,11 +2,11 @@
 using Infra.Localizer;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Register.API.ViewModels;
 using Register.Business.Hub;
 using Register.Business.Models;
-using Register.Service.ViewModels;
 
-namespace RegisterService.Controllers
+namespace Register.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

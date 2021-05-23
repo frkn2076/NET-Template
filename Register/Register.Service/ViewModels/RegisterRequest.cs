@@ -1,4 +1,4 @@
-﻿namespace Register.Service.ViewModels
+﻿namespace Register.API.ViewModels
 {
     public class RegisterRequest
     {

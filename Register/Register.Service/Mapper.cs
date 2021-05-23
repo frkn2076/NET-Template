@@ -1,9 +1,9 @@
 ﻿using Infra.CommonMessages;
 using Mapster;
 using Register.Business.Models;
-using Register.Service.ViewModels;
+using Register.API.ViewModels;
 
-namespace Register.Service
+namespace Register.API
 {
     public class Mapper
     {

@@ -18,9 +18,8 @@ using Register.DataAccess;
 using Register.Repository;
 using Register.Repository.Implementation;
 using System;
-using System.Reflection;
 
-namespace Register.Service
+namespace Register.API
 {
     public class Startup
     {
@@ -32,17 +31,15 @@ namespace Register.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegisterService", Version = "v1" }));
-
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegisterAPI", Version = "v1" }));
 
             var registerDBName = Environment.GetEnvironmentVariable("PostgreRegisterDB");
             var registerDBConnecton = Helper.GetPostgreDatabaseConnection(registerDBName);
-            services.AddDbContextPool<RegisterDBContext>(options => options.UseNpgsql(registerDBConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
+            services.AddDbContextPool<RegisterDBContext>(options => options.UseNpgsql(registerDBConnecton).EnableSensitiveDataLogging());
 
             var localizerDBName = Environment.GetEnvironmentVariable("PostgreLocalizerDB");
             var localizerDBConnecton = Helper.GetPostgreDatabaseConnection(localizerDBName);
-            services.AddDbContextPool<LocalizerDBContext>(options => options.UseNpgsql(localizerDBConnecton, sql => sql.MigrationsAssembly(migrationsAssembly)));
+            services.AddDbContextPool<LocalizerDBContext>(options => options.UseNpgsql(localizerDBConnecton).EnableSensitiveDataLogging());
 
             services.AddScoped<IRegisterRepo, RegisterRepo>();
             services.AddScoped<IAuthenticationRepo, AuthenticationRepo>();
@@ -59,7 +56,7 @@ namespace Register.Service
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegisterService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegisterAPI v1"));
             }
 
             app.MigrateDatabaseAndTables<RegisterDBContext>();
