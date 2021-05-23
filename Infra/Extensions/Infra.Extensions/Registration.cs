@@ -1,5 +1,4 @@
-﻿using Infra.Resource.DataAccess;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -8,22 +7,8 @@ using System.Text;
 
 namespace Infra.Extensions
 {
-    public static class Extension
+    public static class Registration
     {
-        public static void MigrateDatabaseAndTables<T>(this IApplicationBuilder app) where T : DbContext
-        {
-            try
-            {
-                using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>()?.CreateScope();
-                var context = (DbContext)serviceScope.ServiceProvider.GetRequiredService<T>();
-                context.Database.EnsureCreated();
-            }
-            catch (Exception ex)
-            {
-                //log
-            }
-        }
-
         public static void JWTRegistration(this IServiceCollection service, string key, string scheme)
         {
             var signingKey = Encoding.ASCII.GetBytes(key);
@@ -46,7 +31,21 @@ namespace Infra.Extensions
                 });
         }
 
-        public static string RemoveText(this string text, string key) => text.Replace(key, string.Empty);
+        public static void RedisRegistration(this IServiceCollection service, string redisAddress)
+        {
+            service.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "SessionAndCache";
+                options.Configuration = redisAddress;// ?? "localhost:6379";
+            });
 
+            service.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(20));
+        }
+
+
+        public static void LocalizerRegistration(this IServiceCollection service, string pgSqlConnection, bool sqlScriptLogging)
+        {
+
+        }
     }
 }
