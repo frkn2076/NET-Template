@@ -26,18 +26,14 @@ namespace Infra.Resource.DataAccess
         public override int SaveChanges()
         {
             var entries = ChangeTracker.Entries().Where(e => e.Entity is Audit && (e.State == EntityState.Added || e.State == EntityState.Modified));
-
             ModifyAudit(entries);
-
             return base.SaveChanges();
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var entries = ChangeTracker.Entries().Where(e => e.Entity is Audit && (e.State == EntityState.Added || e.State == EntityState.Modified));
-
             ModifyAudit(entries);
-
             return await base.SaveChangesAsync(cancellationToken);
         }
 

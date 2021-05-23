@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<Localizations>
+		<item Language="EN" Key="UserExistError" Value="User already exists" />
+		<item Language="TR" Key="UserExistError" Value="Kayıtlı kullanıcı" />
+	</Localizations>
+</root>

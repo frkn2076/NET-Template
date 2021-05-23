@@ -11,13 +11,13 @@ namespace Infra.Resource.Repository.Implementation
 
         public LocalizationRepo(LocalizerDBContext context) => _context = context;
 
-        private string First(string language, string key) =>
-            _context.Localizations.AsNoTracking().FirstOrDefault(x => x.Language == language && x.Key == key).Value;
+        private string First(string language, string key)
+            => _context.Localizations.AsNoTracking().FirstOrDefault(x => x.Language == language && x.Key == key)?.Value;
 
         private void InsertOrUpdate(string language, string key, string value)
         {
             var existLocalization = _context.Localizations.FirstOrDefault(x => x.Language == language && x.Key == key);
-            if(existLocalization == null)
+            if (existLocalization == null)
                 _context.Localizations.Add(new Localization() { Language = language, Key = key, Value = value });
             else
                 existLocalization.Value = value;
