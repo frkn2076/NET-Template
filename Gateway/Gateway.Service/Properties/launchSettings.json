@@ -9,30 +9,32 @@
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
+    "Gateway.API": {
+      "commandName": "Project",
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "JwtScheme": "TestKey",
+        "ReqResLoggingQueue": "reqreslogging",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
+        "LogQueueHostName": "localhost",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Environment": "Development"
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5000"
+    },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "LoggingQueue": "logging",
-        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
         "JwtScheme": "TestKey",
+        "ReqResLoggingQueue": "reqreslogging",
+        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
         "LogQueueHostName": "localhost",
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Environment": "Development"
       }
-    },
-    "Gateway.Service": {
-      "commandName": "Project",
-      "launchUrl": "swagger",
-      "environmentVariables": {
-        "LoggingQueue": "logging",
-        "JwtSecretKey": "llgfusXQtnrxgKtWKpqEzLqAutpYWglI",
-        "JwtScheme": "TestKey",
-        "LogQueueHostName": "localhost",
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5000"
     },
     "Docker": {
       "commandName": "Docker",

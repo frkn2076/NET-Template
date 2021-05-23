@@ -1,24 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gateway.Middleware;
+using Infra.LogPublisher;
 using Infra.Extensions;
+using Infra.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using System;
 
-namespace Gateway.Service
+namespace Gateway.API
 {
     public class Startup
     {
@@ -37,6 +31,10 @@ namespace Gateway.Service
 
             services.JWTRegistration(jwtSecretKey, scheme);
 
+            var redisAddress = Environment.GetEnvironmentVariable("RedisAddress");
+
+            services.RedisRegistration(redisAddress);
+
             services.AddOcelot();
         }
 
@@ -52,11 +50,13 @@ namespace Gateway.Service
 
             app.UseHttpsRedirection();
 
-            app.UseMiddleware<RequestResponseLoggingMiddleware>();
+            app.UseMiddleware<RequestResponseLoggingMiddleware>((Action<string>)Console.WriteLine);
 
             app.UseRouting();
 
             app.UseAuthentication();
+
+            app.UseSession();
 
             app.UseOcelot();
 
