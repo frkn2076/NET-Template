@@ -1,6 +1,6 @@
 # NET-Template
 
-1 - Use environment variables as constant.
+## 1 - Use environment variables as constant.
 * Prebuild the project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
 **PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs** 
 * To decide the environment, just change the path of ***.env file in PrebuiltVariables.tt file.  
