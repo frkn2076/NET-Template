@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Infra.Constants;
+using Microsoft.IdentityModel.Tokens;
 using Register.Business.Models;
 using Register.DataAccess.Entities;
 using Register.Repository;
@@ -18,7 +19,7 @@ namespace Register.Business.Hub.Implementation
         public AuthenticationManager(IAuthenticationRepo authenticationRepo)
         {
             _authenticationRepo = authenticationRepo;
-            _signingKey = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JwtSecretKey"));
+            _signingKey = Encoding.ASCII.GetBytes(PrebuiltVariables.JwtSecretKey);
         }
 
         private TokenDTOResponse GenerateToken(int accessTokenExpiration, int refreshTokenExpiration, params (string, string)[] claims)

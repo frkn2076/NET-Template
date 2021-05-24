@@ -1,6 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using Infra.Constants;
+using Infra.Helper;
+using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
 
 namespace LogQueue.DataAccess
 {
@@ -11,15 +12,9 @@ namespace LogQueue.DataAccess
         private static readonly IMongoCollection<BsonDocument> _logCollection;
         static MongoRepo()
         {
-            var user = Environment.GetEnvironmentVariable("MongoLogUser");
-            var password = Environment.GetEnvironmentVariable("MongoLogPassword");
-            var host = Environment.GetEnvironmentVariable("MongoLogHost");
-            var port = Environment.GetEnvironmentVariable("MongoLogPort");
-            _client = new MongoClient($"mongodb://{user}:{password}@{host}:{port}");
-
-            var logDatabaseName = Environment.GetEnvironmentVariable("MongoLogDB");
-            _logDatabase = _client.GetDatabase(logDatabaseName);
-
+            var mongoDatabaseConnection = Helper.GetMongoDatabaseConnection();
+            _client = new MongoClient(mongoDatabaseConnection);
+            _logDatabase = _client.GetDatabase(PrebuiltVariables.MongoLogDB);
             _logCollection = _logDatabase.GetCollection<BsonDocument>("Logs");
         }
 

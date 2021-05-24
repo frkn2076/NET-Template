@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infra.Constants;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -9,19 +10,15 @@ namespace Notifier.Business.Implementation
     public class BusinessManager : IBusinessManager
     {
         private readonly SmtpClient _smtpClient;
-        private readonly string _fromMailAddress;
         public BusinessManager()
         {
-            _fromMailAddress = Environment.GetEnvironmentVariable("FromMailAddress");
-            var fromMailPassword = Environment.GetEnvironmentVariable("FromMailPassword");
-
             _smtpClient = new SmtpClient()
             {
-                Port = 587,
-                Host = "smtp.gmail.com",
+                Port = Convert.ToInt32(PrebuiltVariables.SMTPPort),
+                Host = PrebuiltVariables.SMTPHost,
                 EnableSsl = true,
                 UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(_fromMailAddress, fromMailPassword)
+                Credentials = new NetworkCredential(PrebuiltVariables.SMTPFromMailAddress, PrebuiltVariables.SMTPFromMailPassword)
             };
 
         }
@@ -30,7 +27,7 @@ namespace Notifier.Business.Implementation
             await Task.Run(() => {
                 MailMessage mail = new MailMessage();
 
-                mail.From = new MailAddress(_fromMailAddress, header);
+                mail.From = new MailAddress(PrebuiltVariables.SMTPFromMailAddress, header);
 
                 toList.ToList().ForEach(to => mail.To.Add(to));
 
@@ -44,6 +41,7 @@ namespace Notifier.Business.Implementation
             });
         }
 
-        async Task IBusinessManager.SendMailAsync(string header, string subject, string body, params string[] toList) => await SendMailAsync(header, subject, body, toList);
+        async Task IBusinessManager.SendMailAsync(string header, string subject, string body, params string[] toList) 
+            => await SendMailAsync(header, subject, body, toList);
     }
 }

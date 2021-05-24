@@ -19,12 +19,5 @@
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="VariablePrebuilder.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>VariablePrebuilder.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
 
 </Project>

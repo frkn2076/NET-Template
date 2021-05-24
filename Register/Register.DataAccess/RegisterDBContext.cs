@@ -1,4 +1,5 @@
-﻿using Infra.Core.DataAccess;
+﻿using Infra.Constants;
+using Infra.Core.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Register.DataAccess.Entities;
@@ -12,8 +13,7 @@ namespace Register.DataAccess
 {
     public class RegisterDBContext : DbContext
     {
-        private readonly string AppName = Environment.GetEnvironmentVariable("AppName");
-
+        
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Authentication> Authentications { get; set; }
 
@@ -46,7 +46,7 @@ namespace Register.DataAccess
                 if (entityEntry.State == EntityState.Added)
                 {
                     ((Audit)entityEntry.Entity).CreatedAt = DateTime.UtcNow;
-                    ((Audit)entityEntry.Entity).CreatedBy = AppName;
+                    ((Audit)entityEntry.Entity).CreatedBy = PrebuiltVariables.AppName;
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace Register.DataAccess
                 }
 
                 ((Audit)entityEntry.Entity).ModifiedAt = DateTime.UtcNow;
-                ((Audit)entityEntry.Entity).ModifiedBy = AppName;
+                ((Audit)entityEntry.Entity).ModifiedBy = PrebuiltVariables.AppName;
             }
         }
     }

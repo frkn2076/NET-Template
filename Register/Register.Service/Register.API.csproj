@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infra\CommonMessages\Infra.CommonMessages\Infra.CommonMessages.csproj" />
+    <ProjectReference Include="..\..\Infra\Constants\Infra.Constants\Infra.Constants.csproj" />
     <ProjectReference Include="..\..\Infra\Extensions\Infra.Extensions\Infra.Extensions.csproj" />
     <ProjectReference Include="..\..\Infra\Helper\Infra.Helper\Infra.Helper.csproj" />
     <ProjectReference Include="..\..\Infra\Localization\Infra.Localizer.Repository\Infra.Localizer.Repository.csproj" />

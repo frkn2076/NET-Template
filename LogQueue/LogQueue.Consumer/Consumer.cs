@@ -1,4 +1,5 @@
-﻿using LogQueue.DataAccess;
+﻿using Infra.Constants;
+using LogQueue.DataAccess;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -11,34 +12,33 @@ namespace LogQueue.Consumer
     {
         static void Main(string[] args)
         {
-            var logQueueHostName = Environment.GetEnvironmentVariable("LogQueueHostName");
-            var reqResLoggingQueue = Environment.GetEnvironmentVariable("reqreslogging");
-            var errorLoggingQueue = Environment.GetEnvironmentVariable("ErrorLoggingQueue");
-            var factory = new ConnectionFactory() { HostName = logQueueHostName };
+            var factory = new ConnectionFactory() { HostName = PrebuiltVariables.LogQueueHostName };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
-            channel.QueueDeclare(queue: reqResLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
-            channel.QueueDeclare(queue: errorLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            channel.QueueDeclare(queue: PrebuiltVariables.ReqResLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
+            channel.QueueDeclare(queue: PrebuiltVariables.ErrorLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
 
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                MongoRepo.InsertLog(message);
-                //var a = reqResLoggingQueue
-                //switch (ea.RoutingKey)
-                //{
-                //    case reqResLoggingQueue:
-                //        break;
-                //    case errorLoggingQueue:
-                //        break;
-                //    default:
-                //        break;
-                //}
+                
+                switch (ea.RoutingKey)
+                {
+                    case PrebuiltVariables.ReqResLoggingQueue:
+                        MongoRepo.InsertLog(message);
+                        break;
+                    case PrebuiltVariables.ErrorLoggingQueue:
+                        //TODO:
+                        break;
+                    default:
+                        break;
+                }
             };
 
-            channel.BasicConsume(queue: reqResLoggingQueue, autoAck: true, consumer: consumer);
+            channel.BasicConsume(queue: PrebuiltVariables.ReqResLoggingQueue, autoAck: true, consumer: consumer);
+            channel.BasicConsume(queue: PrebuiltVariables.ErrorLoggingQueue, autoAck: true, consumer: consumer);
 
             new ManualResetEvent(false).WaitOne();
         }

@@ -31,15 +31,15 @@ namespace Infra.Extensions
                 });
         }
 
-        public static void RedisRegistration(this IServiceCollection service, string redisAddress)
+        public static void RedisRegistration(this IServiceCollection service, string redisAddress, int expireDurationAsMinute)
         {
             service.AddDistributedRedisCache(options =>
             {
                 options.InstanceName = "SessionAndCache";
-                options.Configuration = redisAddress;// ?? "localhost:6379";
+                options.Configuration = redisAddress;
             });
 
-            service.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(20));
+            service.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(expireDurationAsMinute));
         }
 
 

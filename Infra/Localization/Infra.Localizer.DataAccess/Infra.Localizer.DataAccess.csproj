@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Constants\Infra.Constants\Infra.Constants.csproj" />
     <ProjectReference Include="..\..\Core\Infra.Core.DataAccess\Infra.Core.DataAccess.csproj" />
   </ItemGroup>
 

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Constants\Infra.Constants\Infra.Constants.csproj" />
     <ProjectReference Include="..\..\Infra\Core\Infra.Core.DataAccess\Infra.Core.DataAccess.csproj" />
   </ItemGroup>
 

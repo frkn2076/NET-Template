@@ -1,4 +1,5 @@
-﻿using Infra.Core.DataAccess;
+﻿using Infra.Constants;
+using Infra.Core.DataAccess;
 using Infra.Resource.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -12,8 +13,6 @@ namespace Infra.Resource.DataAccess
 {
     public class LocalizerDBContext : DbContext
     {
-        private readonly string AppName = Environment.GetEnvironmentVariable("AppName");
-
         public DbSet<Localization> Localizations { get; set; }
 
         public LocalizerDBContext(DbContextOptions<LocalizerDBContext> options) : base(options) { }
@@ -44,7 +43,7 @@ namespace Infra.Resource.DataAccess
                 if (entityEntry.State == EntityState.Added)
                 {
                     ((Audit)entityEntry.Entity).CreatedAt = DateTime.UtcNow;
-                    ((Audit)entityEntry.Entity).CreatedBy = AppName;
+                    ((Audit)entityEntry.Entity).CreatedBy = PrebuiltVariables.AppName;
                 }
                 else
                 {
@@ -53,7 +52,7 @@ namespace Infra.Resource.DataAccess
                 }
 
                 ((Audit)entityEntry.Entity).ModifiedAt = DateTime.UtcNow;
-                ((Audit)entityEntry.Entity).ModifiedBy = AppName;
+                ((Audit)entityEntry.Entity).ModifiedBy = PrebuiltVariables.AppName;
             }
         }
     }

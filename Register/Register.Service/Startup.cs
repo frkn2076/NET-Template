@@ -1,3 +1,4 @@
+using Infra.Constants;
 using Infra.Extensions;
 using Infra.Helper;
 using Infra.Localizer;
@@ -33,12 +34,10 @@ namespace Register.API
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegisterAPI", Version = "v1" }));
 
-            var registerDBName = Environment.GetEnvironmentVariable("PostgreRegisterDB");
-            var registerDBConnecton = Helper.GetPostgreDatabaseConnection(registerDBName);
+            var registerDBConnecton = Helper.GetPostgreDatabaseConnection(PrebuiltVariables.PostgreRegisterDB);
             services.AddDbContextPool<RegisterDBContext>(options => options.UseNpgsql(registerDBConnecton).EnableSensitiveDataLogging());
 
-            var localizerDBName = Environment.GetEnvironmentVariable("PostgreLocalizerDB");
-            var localizerDBConnecton = Helper.GetPostgreDatabaseConnection(localizerDBName);
+            var localizerDBConnecton = Helper.GetPostgreDatabaseConnection(PrebuiltVariables.PostgreLocalizerDB);
             services.AddDbContextPool<LocalizerDBContext>(options => options.UseNpgsql(localizerDBConnecton).EnableSensitiveDataLogging());
 
             services.AddScoped<IRegisterRepo, RegisterRepo>();

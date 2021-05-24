@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using System;
+using Infra.Constants;
 
 namespace Gateway.API
 {
@@ -26,14 +27,9 @@ namespace Gateway.API
             services.AddControllers();
             services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo { Title = "GatewayService", Version = "v1" }));
 
-            var jwtSecretKey = Environment.GetEnvironmentVariable("JwtSecretKey");
-            var scheme = Environment.GetEnvironmentVariable("JwtScheme");
+            services.JWTRegistration(PrebuiltVariables.JwtSecretKey, PrebuiltVariables.JwtScheme);
 
-            services.JWTRegistration(jwtSecretKey, scheme);
-
-            var redisAddress = Environment.GetEnvironmentVariable("RedisAddress");
-
-            services.RedisRegistration(redisAddress);
+            services.RedisRegistration(PrebuiltVariables.RedisAddress, Convert.ToInt32(PrebuiltVariables.RedisExpireDurationMinutes));
 
             services.AddOcelot();
         }

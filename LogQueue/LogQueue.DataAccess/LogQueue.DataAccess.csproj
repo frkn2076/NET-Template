@@ -8,4 +8,9 @@
     <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infra\Constants\Infra.Constants\Infra.Constants.csproj" />
+    <ProjectReference Include="..\..\Infra\Helper\Infra.Helper\Infra.Helper.csproj" />
+  </ItemGroup>
+
 </Project>
