@@ -22,6 +22,7 @@
 * RabbitMQ for logging system
 * Redis for distributed cache
 * Mapster for object mapping
+* T4 Template for source code generation
 
 
 ## Docker
