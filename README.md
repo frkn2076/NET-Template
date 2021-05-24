@@ -1,5 +1,10 @@
 # NET-Template
 
+1 - Prebuild the project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs** 
+
+2 - 
+
 # WORK IN PROGRESS
 
 * gRPC for communication between microservices
