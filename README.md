@@ -1,7 +1,15 @@
 # NET-Template
 
-1 - Prebuild the project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs** 
+1 - Use environment variables as constant.
+* Prebuild the project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
+**PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs** 
+* To decide the environment, just change the path of ***.env file in PrebuiltVariables.tt file.  
+**PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.tt** 
+
+   ```csharp
+  var envFile = @"C:\.NETProjects\NET-Template\Development.env";
+   ```
+
 
 2 - 
 
