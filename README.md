@@ -41,4 +41,3 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 
 ## TO DO
 * Fluent Validation
-* Ef core to dapper
