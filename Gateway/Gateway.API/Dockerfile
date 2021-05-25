@@ -14,7 +14,6 @@ RUN dotnet restore "Gateway/Gateway.API/Gateway.API.csproj"
 COPY . .
 WORKDIR "/src/Gateway/Gateway.API"
 RUN dotnet build "Gateway.API.csproj" -c $ENVIRONMENT -o /app/build
-RUN dotnet build "Gateway.API.csproj" -c $ENVIRONMENT -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Gateway.API.csproj" -c $ENVIRONMENT -o /app/publish
