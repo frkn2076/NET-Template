@@ -1,5 +1,18 @@
 # NET-Template
 
+## 1 - Use environment variables as constant.
+* Prebuild the **Infra.Constants** project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
+*PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs* 
+* To decide the environment, just change the path of ***.env file in PrebuiltVariables.tt file.  
+*PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.tt* 
+
+   ```csharp
+  var envFile = @"C:\.NETProjects\NET-Template\Development.env";
+   ```
+
+
+2 - 
+
 # WORK IN PROGRESS
 
 * gRPC for communication between microservices
@@ -9,6 +22,7 @@
 * RabbitMQ for logging system
 * Redis for distributed cache
 * Mapster for object mapping
+* T4 Template for source code generation
 
 
 ## Docker
