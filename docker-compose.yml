@@ -1,62 +1,81 @@
 version: '3.4'
 
 services:
+  gatewayapi:
+    image: 'gatewayapi'
+    container_name: 'gatewayapi-container'
+    build: 
+      context: .
+      dockerfile: ./Gateway/Gateway.API/Dockerfile
+      args:
+        ENV: ${ENVIRONMENT}
+    ports:
+      - '${GatewayAPIPort}:80'
+    depends_on:
+      - registerdb
+    restart: always
+    networks:
+      - gateway-network
+      
+  registerapi:
+    image: 'registerapi'
+    container_name: 'registerapi-container'
+    build: 
+      context: .
+      dockerfile: ./Register/Register.API/Dockerfile
+      args:
+        ENV: ${ENVIRONMENT}
+    ports:
+      - '${RegisterAPIPort}:80'
+    depends_on:
+      - registerdb
+    restart: always
+    networks:
+      - gateway-network
+      - register-network
+      
   registerdb:
     image: 'postgres:13-alpine'
     container_name: 'registerdb-container'
     environment:
       - POSTGRES_DB=${PostgreRegisterDB}
-      - POSTGRES_USER=${PostgreRegisterUser}
-      - POSTGRES_PASSWORD=${PostgreRegisterPassword}
+      - POSTGRES_USER=${PostgreUser}
+      - POSTGRES_PASSWORD=${PostgrePassword}
     ports:
-      - '${PostgreRegisterPort}:5432'
+      - '${PostgrePort}:5432'
     volumes:
       - register-volume:/var/lib/postgresql/data
     restart: always
     networks:
       - register-network
   
-  registerAPI:
-    image: 'registerAPI'
-    container_name: 'registerAPI-container'
+  logconsumer:
+    image: 'logconsumer'
+    container_name: 'logconsumer-container'
     build: 
       context: .
-      dockerfile: ./Register/Register.API/Dockerfile
-    ports:
-      - '${RegisterAPIPort}:80'
-    env_file:
-      - '${EnvironmentFile}'
+      dockerfile: ./LogQueue/LogQueue.Consumer/Dockerfile
+      args:
+        ENV: ${ENVIRONMENT}
     depends_on:
-      - registerdb
+      - logdb
     restart: always
     networks:
-      - register-network
-      
+      - log-network
+  
   logdb:
     image: 'mongo'
     container_name: 'logdb-container'
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=${MongoLogUser}
-      - MONGO_INITDB_ROOT_PASSWORD=${MongoLogPassword}
+      - MONGO_INITDB_ROOT_USERNAME=${MongoUser}
+      - MONGO_INITDB_ROOT_PASSWORD=${MongoPassword}
     ports:
-      - '${MongoLogPort}:27017'
+      - '${MongoPort}:27017'
     volumes:
       - log-volume:/data/db
     restart: always
-      
-  #logconsumer:
-  #  image: 'logconsumer'
-  #  container_name: 'logconsumer-container'
-  #  build: 
-  #    context: .
-  #    dockerfile: ./LogQueue/LogQueue.Consumer/Dockerfile
-  #  env_file:
-  #    - '${EnvironmentFile}'
-  #  depends_on:
-  #    - logdb
-  #  restart: always
-  #  networks:
-  #    - log-network
+    networks:
+      - log-network
       
   rabbitmq: # login guest:guest
     image: rabbitmq:3-management-alpine
@@ -65,6 +84,8 @@ services:
     ports:
       - '5672:5672'
       - '15672:15672'
+    networks:
+      - log-network
     
   redis:
     image: redis:alpine
@@ -74,16 +95,19 @@ services:
       - '6379:6379'
     volumes:
       - redis-data:/data
-    
-    
+    restart: always
+    networks:
+      - gateway-network
 
 volumes:
   register-volume:
   log-volume:
   redis-data:
 
-#networks:
-#  register-network:
-#    driver: bridge
-#  register-network:
-#    driver: bridge
+networks:
+  register-network:
+    driver: bridge
+  gateway-network:
+    driver: bridge
+  log-network:
+    driver: bridge
