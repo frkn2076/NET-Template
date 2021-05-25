@@ -13,10 +13,11 @@ COPY ["Gateway/Gateway.LogPublisher/Gateway.LogPublisher.csproj", "Gateway/Gatew
 RUN dotnet restore "Gateway/Gateway.API/Gateway.API.csproj"
 COPY . .
 WORKDIR "/src/Gateway/Gateway.API"
-RUN dotnet build "Gateway.API.csproj" -c Release -o /app/build
+RUN dotnet build "Gateway.API.csproj" -c $ENVIRONMENT -o /app/build
+RUN dotnet build "Gateway.API.csproj" -c $ENVIRONMENT -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Gateway.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Gateway.API.csproj" -c $ENVIRONMENT -o /app/publish
 
 FROM base AS final
 WORKDIR /app

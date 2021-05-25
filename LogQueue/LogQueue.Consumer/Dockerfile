@@ -9,10 +9,11 @@ COPY ["LogQueue/LogQueue.Consumer/LogQueue.Consumer.csproj", "LogQueue/LogQueue.
 RUN dotnet restore "LogQueue/LogQueue.Consumer/LogQueue.Consumer.csproj"
 COPY . .
 WORKDIR "/src/LogQueue/LogQueue.Consumer"
-RUN dotnet build "LogQueue.Consumer.csproj" -c Release -o /app/build
+RUN dotnet build "LogQueue.Consumer.csproj" -c $ENVIRONMENT -o /app/build
+RUN dotnet build "LogQueue.Consumer.csproj" -c $ENVIRONMENT -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "LogQueue.Consumer.csproj" -c Release -o /app/publish
+RUN dotnet publish "LogQueue.Consumer.csproj" -c $ENVIRONMENT -o /app/publish
 
 FROM base AS final
 WORKDIR /app

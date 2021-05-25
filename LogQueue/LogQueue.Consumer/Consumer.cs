@@ -12,7 +12,7 @@ namespace LogQueue.Consumer
     {
         static void Main(string[] args)
         {
-            var factory = new ConnectionFactory() { HostName = PrebuiltVariables.LogQueueHostName };
+            var factory = new ConnectionFactory() { HostName = PrebuiltVariables.RabbitMQHost };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
             channel.QueueDeclare(queue: PrebuiltVariables.ReqResLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);

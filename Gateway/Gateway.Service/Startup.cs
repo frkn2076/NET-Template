@@ -29,7 +29,7 @@ namespace Gateway.API
 
             services.JWTRegistration(PrebuiltVariables.JwtSecretKey, PrebuiltVariables.JwtScheme);
 
-            services.RedisRegistration(PrebuiltVariables.RedisAddress, Convert.ToInt32(PrebuiltVariables.RedisExpireDurationMinutes));
+            services.RedisRegistration(PrebuiltVariables.RedisHost, PrebuiltVariables.RedisPort, Convert.ToInt32(PrebuiltVariables.RedisExpireDurationMinutes));
 
             services.AddOcelot();
         }
@@ -46,7 +46,7 @@ namespace Gateway.API
 
             app.UseHttpsRedirection();
 
-            app.UseMiddleware<RequestResponseLoggingMiddleware>((Action<string>)Console.WriteLine);
+            app.UseMiddleware<RequestResponseLoggingMiddleware>((Action<string>)Publisher.Send);
 
             app.UseRouting();
 

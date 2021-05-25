@@ -10,9 +10,15 @@ namespace Infra.Constants
 	public class PrebuiltVariables
 	{
 		<# 
-        var envFile = @"C:\.NETProjects\NET-Template\Development.env";
+        var DEVEnvFile = @"C:\.NETProjects\NET-Template\Development.env";
+        var UATEnvFile = @"C:\.NETProjects\NET-Template\Testing.env";
+        var PRODEnvFile = @"C:\.NETProjects\NET-Template\Production.env";
+#>
 
-        foreach (var line in File.ReadAllLines(envFile))
+#if PROD 
+
+        <#    
+        foreach (var line in File.ReadAllLines(PRODEnvFile))
         {
             var parts = line.Split('=');
 
@@ -20,5 +26,32 @@ namespace Infra.Constants
                 continue;
             #> public const string <#= parts[0]#> = "<#= parts[1]#>"; 
         <#}#> 
+
+#elif UAT
+
+        <#
+
+        foreach (var line in File.ReadAllLines(UATEnvFile))
+        {
+            var parts = line.Split('=');
+
+            if (parts.Length != 2)
+                continue;
+            #> public const string <#= parts[0]#> = "<#= parts[1]#>"; 
+        <#}#> 
+#else
+
+        <#
+
+        foreach (var line in File.ReadAllLines(DEVEnvFile))
+        {
+            var parts = line.Split('=');
+
+            if (parts.Length != 2)
+                continue;
+            #> public const string <#= parts[0]#> = "<#= parts[1]#>"; 
+        <#}#> 
+#endif
+
     }
 }

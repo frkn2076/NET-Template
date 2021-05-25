@@ -13,10 +13,11 @@ COPY ["Register/Register.DataAccess/Register.DataAccess.csproj", "Register/Regis
 RUN dotnet restore "Register/Register.API/Register.API.csproj"
 COPY . .
 WORKDIR "/src/Register/Register.API"
-RUN dotnet build "Register.API.csproj" -c Release -o /app/build
+RUN dotnet build "Register.API.csproj" -c $ENVIRONMENT -o /app/build
+RUN dotnet build "Register.API.csproj" -c $ENVIRONMENT -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Register.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Register.API.csproj" -c $ENVIRONMENT -o /app/publish
 
 FROM base AS final
 WORKDIR /app

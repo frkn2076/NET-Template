@@ -6,14 +6,15 @@ namespace Infra.LogPublisher
 {
     public class Publisher
     {
-        private static readonly ConnectionFactory _factory = new ConnectionFactory() { HostName = PrebuiltVariables.LogQueueHostName };
-        private static readonly IConnection _connection = _factory.CreateConnection();
-        private static IModel _channel => DeclareQueue();
-        private static IModel DeclareQueue()
+        private static readonly ConnectionFactory _factory;
+        private static readonly IConnection _connection;
+        private static IModel _channel;
+        static Publisher()
         {
-            var channel = _connection.CreateModel();
-            channel.QueueDeclare(queue: PrebuiltVariables.ReqResLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
-            return channel;
+            _factory = new ConnectionFactory() { HostName = PrebuiltVariables.RabbitMQHost };
+            _connection = _factory.CreateConnection();
+            _channel = _connection.CreateModel();
+            _channel.QueueDeclare(queue: PrebuiltVariables.ReqResLoggingQueue, durable: false, exclusive: false, autoDelete: false, arguments: null);
         }
 
         public static void Send(string payload)

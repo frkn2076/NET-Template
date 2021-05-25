@@ -6,6 +6,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <OutputType>Exe</OutputType>
+    <Configurations>DEV;UAT;PROD</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
