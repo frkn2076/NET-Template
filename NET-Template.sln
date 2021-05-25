@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0BDB9C80-4918-4165-9E5C-0A0533A873CA}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.gitignore = .gitignore
 		compose.yml = compose.yml
 		docker-compose.yml = docker-compose.yml
@@ -18,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Register.Repository", "Regi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Register.Business", "Register\Register.Business\Register.Business.csproj", "{F3C89704-50FA-47A9-9695-41C0BF0EEDC9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Register.API", "Register\Register.Service\Register.API.csproj", "{F753BBB1-ACEB-43E2-98DD-59F6202A7357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Register.API", "Register\Register.API\Register.API.csproj", "{F753BBB1-ACEB-43E2-98DD-59F6202A7357}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{E19BCBC7-F5AA-492A-B900-78B43CF83AF7}"
 EndProject
@@ -62,7 +63,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper", "Helper", "{C0FD95
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Helper", "Infra\Helper\Infra.Helper\Infra.Helper.csproj", "{80C51C05-DBD1-4117-A626-0F1FFE247BA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.API", "Gateway\Gateway.Service\Gateway.API.csproj", "{F215FA31-9401-4BF0-9B92-B3ECFAFE5A7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.API", "Gateway\Gateway.API\Gateway.API.csproj", "{F215FA31-9401-4BF0-9B92-B3ECFAFE5A7B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{5E34215B-28AB-4A05-B3D8-EA7B3103971A}"
 EndProject
