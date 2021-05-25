@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Configurations>DEV;UAT;PROD</Configurations>
   </PropertyGroup>
-  
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" />
-  <PropertyGroup>
+ 
+  <Import Condition=" '$(Configuration)' == 'DEV'" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" />
+  <PropertyGroup Condition=" '$(Configuration)' == 'DEV'">
     <TransformOnBuild>true</TransformOnBuild>
     <OutputType>Library</OutputType>
     <!-- Other properties can be inserted here -->
@@ -19,13 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="VariablePrebuilder.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>VariablePrebuilder.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>
