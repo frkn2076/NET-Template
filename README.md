@@ -2,14 +2,16 @@
 
 ## 1 - Use environment variables as constant.
 * Prebuild the **Infra.Constants** project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
+
 *PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs* 
-* To decide the environment, just change the path of ***.env file in PrebuiltVariables.tt file.  
-*PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.tt* 
+
+Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 
    ```csharp
-  var envFile = @"C:\.NETProjects\NET-Template\Development.env";
+   var DEVEnvFile = @"C:\.NETProjects\NET-Template\Development.env";
+   var UATEnvFile = @"C:\.NETProjects\NET-Template\Testing.env";
+   var PRODEnvFile = @"C:\.NETProjects\NET-Template\Production.env";
    ```
-
 
 2 - 
 
