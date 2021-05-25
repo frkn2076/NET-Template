@@ -94,6 +94,7 @@
          public const string PostgreTimeout = "5"; 
          public const string PostgreRegisterDB = "RegisterDB"; 
          public const string PostgreLocalizerDB = "LocalizerDB"; 
+         public const string GatewayAPIPort = "5000"; 
          public const string RegisterAPIPort = "5004"; 
          public const string SMTPFromMailAddress = "ozturkfurkan1994@gmail.com"; 
          public const string SMTPFromMailPassword = "*****"; 
