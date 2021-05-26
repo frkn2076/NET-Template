@@ -32,22 +32,24 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 <br>
 
 ## You may have the external dependencies (db, rabbitmq, distibuted systems) on docker one by one for local development. 
-
 * docker run --name redis-instance -p 6379:6379 -d redis => **Redis**
 * docker run --name rabbitmq-instance -p 5672:5672 -p 15672:15672 -d rabbitmq:3-management-alpine  => **RabbitMQ**
 * docker run --name mongo-instance -p 27017:27017 -e MONGO_USERNAME=root -e MONGO_USERNAME=12345 -d mongo => **Mongo Database**
 * docker run --name postgre-instance -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=12345 -d postgres:13-alpine => **PostgreSQL Database**
 
-## Technologies and what it has
+<br>
 
-* gRPC for communication between microservices
-* Ocelot as a gateway
-* JWT Authorization by Ocelot
+## Technologies
+* gRPC
+* Ocelot
+* JWT Authorization
+* RabbitMQ
+* Redis
+* Mapster
+* T4 Templates
+
+## Properties
 * Rate limit is 30 requests/minute
-* RabbitMQ for logging system
-* Redis for distributed cache
-* Mapster for object mapping
-* T4 Template for source code generation
 
 
 ## TO DO
