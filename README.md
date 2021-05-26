@@ -1,6 +1,6 @@
 # NET-Template
 
-## 1 - Use environment variables as constant.
+## Use environment variables as constant.
 * Prebuild the **Infra.Constants** project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
 
 *PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs* 
@@ -13,7 +13,6 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
    var PRODEnvFile = @"C:\.NETProjects\NET-Template\Production.env";
    ```
 
-2 - 
 
 # WORK IN PROGRESS
 
@@ -34,10 +33,9 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 * docker run --name mongodb -p 27017:27017 mongo => Mongo db
 * docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=12345 -e POSTGRES_USER=root -d postgres => for postgre db, register service
 
-## To Run
-* docker-compose --env-file Development.env up
+## To Run 
+* docker-compose --env-file Testing.env up
 * docker-compose --env-file Development.env down 
-* docker-compose --env-file Development.env down --rmi all
 
 ## TO DO
 * Fluent Validation
