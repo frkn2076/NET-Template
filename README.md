@@ -38,7 +38,7 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 * docker run --name mongo-instance -p 27017:27017 -e MONGO_USERNAME=root -e MONGO_USERNAME=12345 -d mongo => **Mongo Database**
 * docker run --name postgre-instance -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=12345 -d postgres:13-alpine => **PostgreSQL Database**
 
-# WORK IN PROGRESS
+## Technologies and what it has
 
 * gRPC for communication between microservices
 * Ocelot as a gateway
@@ -49,9 +49,10 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 * Mapster for object mapping
 * T4 Template for source code generation
 
-## To Run 
-* docker-compose --env-file Testing.env up
-* docker-compose --env-file Development.env down 
 
 ## TO DO
 * Fluent Validation
+* GraphQL
+* Elastic Stack(Elastic Search and Kibana Monioring) or Graylog Monitoring
+* Execution time thresholds
+* Deploy pipeline CI/CD (Teamcity and Octopus) 
