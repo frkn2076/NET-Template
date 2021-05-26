@@ -20,6 +20,11 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
   <img src="https://github.com/frkn2076/NET-Template/blob/main/resources/Configurations.PNG">
 </p>
 
+## Decide Environment on Docker
+* Just add **environment file** parameter to your docker compose command like,
+  - **docker-compose --env-file Testing.env up**
+  - **docker-compose --env-file Production.env down** 
+
 # WORK IN PROGRESS
 
 * gRPC for communication between microservices
