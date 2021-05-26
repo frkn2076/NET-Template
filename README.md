@@ -1,6 +1,6 @@
 # NET-Template
 
-## Use environment variables as constant.
+## Use Environment Variables as constant.
 * Prebuild the **Infra.Constants** project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
 
 *PATH: ..\Infra\Constants\Infra.Constants\PrebuiltVariables.cs* 
@@ -13,6 +13,12 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
    var PRODEnvFile = @"C:\.NETProjects\NET-Template\Production.env";
    ```
 
+## Decide Environment by selected configuration on Visual Studio like
+You can select desired configuration (**DEV**, **UAT**, **PROD**) and run/debug the project.
+
+<p align="left">
+  <img src="https://github.com/frkn2076/NET-Template/blob/main/resources/Configurations.PNG">
+</p>
 
 # WORK IN PROGRESS
 
