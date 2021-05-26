@@ -29,7 +29,7 @@ namespace Gateway.API
 
             services.JWTRegistration(PrebuiltVariables.JwtSecretKey, PrebuiltVariables.JwtScheme);
 
-            services.RedisRegistration(PrebuiltVariables.RedisHost, PrebuiltVariables.RedisPort, Convert.ToInt32(PrebuiltVariables.RedisExpireDurationMinutes));
+            services.RedisRegistration(PrebuiltVariables.RedisHost, PrebuiltVariables.RedisPort, Convert.ToInt32(PrebuiltVariables.RedisExpireDurationAsMinutes));
 
             services.AddOcelot();
         }
