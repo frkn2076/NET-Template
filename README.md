@@ -14,7 +14,7 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
    ```
 
 ## Decide Environment by selected configuration on Visual Studio like
-You can select desired configuration (**DEV**, **UAT**, **PROD**) and run/debug the project.
+* You can select desired configuration (**DEV**, **UAT**, **PROD**) and run/debug the project.
 
 <p align="left">
   <img src="https://github.com/frkn2076/NET-Template/blob/main/resources/Configurations.PNG">
