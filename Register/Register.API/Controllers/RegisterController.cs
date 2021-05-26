@@ -1,10 +1,12 @@
 ﻿using Infra.CommonMessages;
+using Infra.Constants;
 using Infra.Localizer;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Register.API.ViewModels;
 using Register.Business.Hub;
 using Register.Business.Models;
+using System;
 
 namespace Register.API.Controllers
 {
@@ -15,8 +17,6 @@ namespace Register.API.Controllers
         private readonly IBusinessManager _business;
         private readonly IAuthenticationManager _authentication;
         private readonly ILocalizer _localizer;
-        private const int _accessTokenExpireIn = 30;
-        private const int _refreshTokenExpireIn = 300;
         private const string ClaimName = "Name";
 
         public RegisterController(IBusinessManager business, IAuthenticationManager authentication, ILocalizer localizer)
@@ -37,7 +37,8 @@ namespace Register.API.Controllers
             var isSuccess = _business.Login(model);
             var response = isSuccess ? BaseResponse.Success : BaseResponse.Fail;
 
-            var token = _authentication.GenerateToken(_accessTokenExpireIn, _refreshTokenExpireIn, (ClaimName, register.Name));
+            var token = _authentication.GenerateToken(Convert.ToInt32(PrebuiltVariables.JwtAccessTokenExpireDurationAsMinutes),
+                Convert.ToInt32(PrebuiltVariables.JwtRefreshTokenExpireDurationAsMinutes), (ClaimName, register.Name));
 
             response = TypeAdapter.Adapt(token, response);
 
@@ -66,7 +67,8 @@ namespace Register.API.Controllers
                     return BaseResponse.Fail;
             }
 
-            var token = _authentication.GenerateToken(_accessTokenExpireIn, _refreshTokenExpireIn, (ClaimName, register.Name));
+            var token = _authentication.GenerateToken(Convert.ToInt32(PrebuiltVariables.JwtAccessTokenExpireDurationAsMinutes),
+                Convert.ToInt32(PrebuiltVariables.JwtRefreshTokenExpireDurationAsMinutes), (ClaimName, register.Name));
             
             response = TypeAdapter.Adapt(token, response);
 
@@ -82,7 +84,8 @@ namespace Register.API.Controllers
         public BaseResponse RefreshToken()
         {
             var refreshToken = HttpContext.Request.Headers["RefreshToken"];
-            var token = _authentication.RefreshToken(_accessTokenExpireIn, _refreshTokenExpireIn, refreshToken);
+            var token = _authentication.RefreshToken(Convert.ToInt32(PrebuiltVariables.JwtAccessTokenExpireDurationAsMinutes),
+                Convert.ToInt32(PrebuiltVariables.JwtRefreshTokenExpireDurationAsMinutes), refreshToken);
 
             var response = BaseResponse.Success;
 
