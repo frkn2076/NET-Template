@@ -29,6 +29,7 @@
          public const string PostgreTimeout = "5"; 
          public const string PostgreRegisterDB = "RegisterDB"; 
          public const string PostgreLocalizerDB = "LocalizerDB"; 
+         public const string GatewayAPIPort = "5000"; 
          public const string RegisterAPIPort = "5004"; 
          public const string SMTPFromMailAddress = "ozturkfurkan1994@gmail.com"; 
          public const string SMTPFromMailPassword = "*****"; 
@@ -62,6 +63,7 @@
          public const string PostgreTimeout = "5"; 
          public const string PostgreRegisterDB = "RegisterDB"; 
          public const string PostgreLocalizerDB = "LocalizerDB"; 
+         public const string GatewayAPIPort = "5000"; 
          public const string RegisterAPIPort = "5004"; 
          public const string SMTPFromMailAddress = "ozturkfurkan1994@gmail.com"; 
          public const string SMTPFromMailPassword = "*****"; 
@@ -83,13 +85,14 @@
          public const string ErrorLoggingQueue = "errorlogging"; 
          public const string JwtSecretKey = "llgfusXQtnrxgKtWKpqEzLqAutpYWglI"; 
          public const string JwtScheme = "TestKey"; 
-         public const string JwtExpireDurationMinutes = "60"; 
+         public const string JwtAccessTokenExpireDurationAsMinutes = "60"; 
+         public const string JwtRefreshTokenExpireDurationAsMinutes = "600"; 
          public const string RedisHost = "localhost"; 
          public const string RedisPort = "6379"; 
-         public const string RedisExpireDurationMinutes = "60"; 
+         public const string RedisExpireDurationAsMinutes = "60"; 
          public const string PostgreUser = "root"; 
          public const string PostgrePassword = "12345"; 
-         public const string PostgreHost = "registerdb"; 
+         public const string PostgreHost = "localhost"; 
          public const string PostgrePort = "5432"; 
          public const string PostgreTimeout = "5"; 
          public const string PostgreRegisterDB = "RegisterDB"; 

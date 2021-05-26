@@ -12,13 +12,20 @@
     <!-- Other properties can be inserted here -->
   </PropertyGroup>
   <ItemGroup>
-    <None Update="VariablePrebuilder.tt">
+    <None Update="PrebuiltVariables.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VariablePrebuilder.cs</LastGenOutput>
+      <LastGenOutput>PrebuiltVariables.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="PrebuiltVariables.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PrebuiltVariables.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
