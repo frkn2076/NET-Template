@@ -48,7 +48,7 @@ Add your environment files as harcoded in **PrebuiltVariables.tt** file like
 * Mapster
 * T4 Templates
 
-## Properties
+## Features
 * Rate limit is 30 requests/minute
 
 
