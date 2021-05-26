@@ -79,6 +79,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Constants", "Constants", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Constants", "Infra\Constants\Infra.Constants\Infra.Constants.csproj", "{BBC16CB9-99E5-4FA7-88B5-BA650B1E690A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{929EDE91-F563-49E0-BE6B-283956C8A597}"
+	ProjectSection(SolutionItems) = preProject
+		resources\Configurations.PNG = resources\Configurations.PNG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DEV|Any CPU = DEV|Any CPU
