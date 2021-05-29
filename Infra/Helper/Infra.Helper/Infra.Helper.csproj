@@ -5,6 +5,10 @@
     <Configurations>DEV;UAT;PROD</Configurations>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEV|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\Constants\Infra.Constants\Infra.Constants.csproj" />
   </ItemGroup>

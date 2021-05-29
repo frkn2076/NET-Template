@@ -11,6 +11,9 @@
     <OutputType>Library</OutputType>
     <!-- Other properties can be inserted here -->
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEV|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
   <ItemGroup>
     <None Update="PrebuiltVariables.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
