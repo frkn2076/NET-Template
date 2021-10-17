@@ -1,4 +1,4 @@
-# NET-Template (Work-in-Progress)
+# NET-Template
 
 ## Use Environment Variables as constant.
 * Prebuild the **Infra.Constants** project to generate source code for environment variables as constant in PrebuiltVariables.cs file.  
